@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://arxiv.org/html/2507.13492v4",
+    "name": "An efficient and energy stable framework for phase field simulations",
+    "snippet": "To exam the performance of the framework, we performed both 2D and 3D phase field simulations of grain growth and used the Rosenthal's solution ...",
+    "host_name": "arxiv.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9737004",
+    "name": "Phase-Field Simulation on the Effect of Second-Phase Particles on",
+    "snippet": "A phase-field model was revised to study the abnormal growth of Goss grains during the annealing process in Fe-3%Si steels, in which the interaction between ...",
+    "host_name": "pmc.ncbi.nlm.nih.gov",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/222302438_Computer_Simulation_of_3-D_Grain_Growth_Using_a_Phase_Field_Model",
+    "name": "Computer Simulation of 3-D Grain Growth Using a Phase Field Model",
+    "snippet": "The kinetics and topology of grain growth in three dimensions are simulated using a phase-field model of an ideal polycrystal with uniform grain-boundary ...",
+    "host_name": "www.researchgate.net",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "http://www.mmm.psu.edu/CKrill2002ActaMater.pdf",
+    "name": "[PDF] Computer simulation of 3-D grain growth using a phase- field model",
+    "snippet": "The kinetics and topology of grain growth in three dimensions are simulated using a phase-field model of an ideal polycrystal with uniform grain-boundary ...",
+    "host_name": "www.mmm.psu.edu",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.frontiersin.org/journals/energy-research/articles/10.3389/fenrg.2022.1080819/full",
+    "name": "Phase-field simulation of grain nucleation, growth, and Rayleigh",
+    "snippet": "A phase-field model is employed to investigate the nucleation and growth of grains in U 3 Si 2. Our results show that the number of grains rises rapidly at the ...",
+    "host_name": "www.frontiersin.org",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]

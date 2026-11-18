@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S2238785425033733",
+    "name": "Phase equilibria and mechanical properties of Cr–Fe–Ni alloys",
+    "snippet": "CALPHAD calculated ternary phase diagram of Cr–Fe–Ni system. a) Ternary phase diagram at 900 °C. b) Ternary phase diagram at 1000 °C. c) Ternary phase ...",
+    "host_name": "www.sciencedirect.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://link.aps.org/doi/10.1103/PhysRevB.91.024108",
+    "name": "Phase stability of ternary fcc and bcc Fe-Cr-Ni alloys | Phys. Rev. B",
+    "snippet": "A thermodynamic model for Fe-Cr-Ni alloys employing CALPHAD method has been developed using interpolation of elevated temperature experimental ...\nFigures 13(a) and 13(c) show that the Ni-rich region of the composition diagram, where fcc phase has lower enthalpy of formation than bcc phase ...",
+    "host_name": "link.aps.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "http://www.mmm.psu.edu/SHZhou2009_CALPHAD_SolutionbasedModeling.pdf",
+    "name": "[PDF] CALPHAD - Computational Materials Science Group",
+    "snippet": "bcc and fcc phases. Phase equilibria modeling results for the ternary Ni–Mo–Ta system are summarily presented in the form of isothermal sections and liquidus ...",
+    "host_name": "www.mmm.psu.edu",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://apps.dtic.mil/sti/tr/pdf/ADA345689.pdf",
+    "name": "[PDF] Phase Diagram Modelling: Nickel - Aluminum - Chromium System",
+    "snippet": "The thermodynamic model of the ternary system is based on the binary phase diagrams for each pair of components. Given the technological ...",
+    "host_name": "apps.dtic.mil",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://inria.hal.science/hal-00690488/preview/Mathon_3772.pdf",
+    "name": "[PDF] Calphad-type assessment of the FeNbNi ternary system - HAL-Inria",
+    "snippet": "This paper presents a Calphad-type thermodynamic database for the Fe–Nb–Ni system. The stable phases in this ternary system are liquid, ...",
+    "host_name": "inria.hal.science",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]

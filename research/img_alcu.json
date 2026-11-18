@@ -1,0 +1,50 @@
+{
+  "success": true,
+  "query": "aluminium copper alloy SEM micrograph dendritic microstructure etched metallographic",
+  "count": 6,
+  "ranked": true,
+  "results": [
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/4cdf46b93810.png",
+      "caption": "Microscopic image of mineral crystals with a \"QATA VERDER\" watermark and a 50 μm scale bar.",
+      "source": "QATM",
+      "original_width": "1200px",
+      "original_height": "800px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/126232d26a5a.png",
+      "caption": "The image contains a data chart and multiple SEM micrographs with scale bars and labels.",
+      "source": "Cambridge University Press & Assessment",
+      "original_width": "1427px",
+      "original_height": "1791px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/2f0c6b630c49.jpg",
+      "caption": "Scanning electron microscope image showing a cross-section of a material with a rough, crystalline internal structure. suitable for background image",
+      "source": "ASM International",
+      "original_width": "3072px",
+      "original_height": "2304px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/fd6ca1726136.png",
+      "caption": "The image contains a large amount of text information and you do not need to output the text completely.",
+      "source": "Springer Nature",
+      "original_width": "1200px",
+      "original_height": "901px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/8fe0b40b8c88.png",
+      "caption": "Nine grayscale micrographs labeled (a) to (i) showing material microstructures with scale bars of 100 μm.",
+      "source": "Nature",
+      "original_width": "1200px",
+      "original_height": "980px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/c6347574fd78.jpg",
+      "caption": "Five micrographs showing material microstructures with scale bars, labels (a-e), and pointers (A, B).",
+      "source": "Springer Nature",
+      "original_width": "1200px",
+      "original_height": "866px"
+    }
+  ]
+}

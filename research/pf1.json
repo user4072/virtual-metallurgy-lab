@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S3117722026000473",
+    "name": "Quantitative phase-field simulation of precipitation kinetics of γ",
+    "snippet": "It is found that increasing W content results in higher γ′ volume fraction and increased γ′ coarsening rate. The accelerated coarsening is ...\nThe constant implies the steady value of the γ′ volume fraction, and the predicted γ′ volume fractions for 8 W, 9 W, and 10 W are 30.5%, 43.5% ...",
+    "host_name": "www.sciencedirect.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.diva-portal.org/smash/get/diva2:1696561/FULLTEXT01.pdf",
+    "name": "[PDF] Phase field modeling of precipitation reactions in miscibility gap",
+    "snippet": "The phase diagram in Fig. 2.4 shows that the initial concentration of the nuclei has the equilibrium composition from the beginning, and the decomposition ...\nAccording to some experiments the lamellae are generally observed to nucleate at grain boundaries and later grow with the help of grain boundary migration [1].",
+    "host_name": "www.diva-portal.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://link.aps.org/doi/10.1103/PhysRevE.72.011602",
+    "name": "Quantitative phase-field modeling of two-phase growth | Phys. Rev. E",
+    "snippet": "A phase-field model that allows for quantitative simulations of low-speed eutectic and peritectic solidification under typical experimental ...",
+    "host_name": "link.aps.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://etda.libraries.psu.edu/catalog/15924yxj135",
+    "name": "Phase-Field Modeling of Precipitation in Metallic Alloys: Morphology",
+    "snippet": "The phase-field model is then applied to investigate the precipitate morphology, kinetics and hardening effect of the fully coherent β'-Mg7Nd in Mg-Nd alloys.",
+    "host_name": "etda.libraries.psu.edu",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://computherm.com/Pandat_OnlineHelp/Content/8-PanPhaseField/2.1_Phase-Field%20Modeling%20of%20Precipitation.htm",
+    "name": "Phase-Field Modeling of Precipitation - CompuTherm",
+    "snippet": "The key inputs in the formulation of are the SFTS (stress-free transformation strain) of each phase and the elastic constants Cijkl of each phase. The SFTS is ...",
+    "host_name": "computherm.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]

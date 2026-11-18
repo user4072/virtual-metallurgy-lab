@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S2238785423027850",
+    "name": "Phase field simulation for grain refinement in dendrite growth of",
+    "snippet": "In this paper, we constructed a phase field lattice-Boltzmann model to explore the influence of the refinement mechanism on the growth of α-Al dendrites.",
+    "host_name": "www.sciencedirect.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10890073",
+    "name": "Prediction of the Secondary Arms Spacing Based on Dendrite Tip",
+    "snippet": "We proposed a simple model which predicted the secondary dendrite arm spacing based solely on the tip velocity (related to the tip supersaturation) and cooling ...",
+    "host_name": "pmc.ncbi.nlm.nih.gov",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://hammer.purdue.edu/articles/thesis/Numerical_Simulation_of_Dendrites_Growth_in_Continuous_Casting_by_Using_Open_Source_Software/12743654/files/24125066.pdf",
+    "name": "[PDF] NUMERICAL SIMULATION OF DENDRITES GROWTH IN",
+    "snippet": "The effects of physical parameters such as anisotropic strength, temperature gradient and cooling rate on the growth and evolution of the.",
+    "host_name": "hammer.purdue.edu",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://iopscience.iop.org/article/10.1088/1361-651X/ac46dc/ampdf",
+    "name": "[PDF] Solidification and grain formation in alloys: a 2D application of the",
+    "snippet": "The dendrite structure is symmetric about both the x- and y-axes. The steady-state growth rate attained in this case is 1.0 in simulation units.",
+    "host_name": "iopscience.iop.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=w2Mgtdm702k",
+    "name": "Phase field modelling of microstructure in multicomponent alloys",
+    "snippet": "Professor Nils Warnken's research currently focuses on the study and modelling of phase transformations in metallic alloys, ...",
+    "host_name": "www.youtube.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]

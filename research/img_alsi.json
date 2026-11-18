@@ -1,0 +1,50 @@
+{
+  "success": true,
+  "query": "aluminium silicon alloy microstructure eutectic silicon particles optical microscopy",
+  "count": 6,
+  "ranked": true,
+  "results": [
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/dc47fce26e93.jpg",
+      "caption": "Two scanning electron microscope (SEM) images showing the microstructure of a material at different magnifications. Text: a, b, SEM MAG: 16.2 kx, View field: 34.1 μm, MIRA3 TESCAN, SEM HV: 5.0 kV, WD: 10.03 mm, 10 μm, SEM MAG: 79.7 kx, View field: 6.93 μm, WD: 10.02 mm, 2 μm",
+      "source": "Nature",
+      "original_width": "967px",
+      "original_height": "1724px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/2d170c74b0f1.jpg",
+      "caption": "Microscopic image showing dark, irregular fragments on a textured background with scale bar \"0.100 mm\".",
+      "source": "Nature",
+      "original_width": "967px",
+      "original_height": "819px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/dba1b8806fd3.jpg",
+      "caption": "Four scanning electron microscope images showing AlP particles in a metallic matrix at different magnifications.",
+      "source": "Nature",
+      "original_width": "1395px",
+      "original_height": "1395px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/fd6ca1726136.png",
+      "caption": "Four micrographs showing Al/Si eutectic and α-Al phases with labels A, B, C and 40 μm scale bars.",
+      "source": "Springer Nature",
+      "original_width": "1200px",
+      "original_height": "901px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/672bd88b0dbe.jpg",
+      "caption": "The image contains a large amount of text information and you do not need to output the text completely.",
+      "source": "Nature",
+      "original_width": "1200px",
+      "original_height": "1408px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/8b041c97bb1c.jpg",
+      "caption": "Nine scanning electron microscopy images showing various crystal morphologies with scale bars.",
+      "source": "Nature",
+      "original_width": "1200px",
+      "original_height": "834px"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://www.youtube.com/watch?v=fjqeEYhaXcI",
+    "name": "Steel phase diagram cooling and Lever Rule example problem",
+    "snippet": "Im honestly baffled by the fact that you explained this better in 7 minutes than any of my professors have in a semester!\nComments · Muddiest Point- Phase Diagrams I: Eutectic Calculations and Lever Rule · Fe-C phase diagram · The steel phase diagram · How to use phase ...\nWorked example problem solution and tutorial for phase diagram lever rule calculation. Amounts of different steel microconstituents ...",
+    "host_name": "www.youtube.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://dl.asminternational.org/technical-books/monograph/118/chapter/2208717/Equilibrium-Phases-and-Constituents-in-the-Fe-C",
+    "name": "Chapter 7: Equilibrium Phases and Constituents in the Fe-C System",
+    "snippet": "This chapter describes the phases and constituents present in iron-carbon steels in near-equilibrium conditions. It explains how to use phase diagrams to ...\nFigure 7.21 presents the fraction of equilibrium phases and constituents calculated in accordance with the lever rule in the Fe-C system. The lever rule can be ...\nIt explains how to use phase diagrams to predict and manage the development of ferrite, austenite, cementite, and pearlite through controlled cooling. It ...",
+    "host_name": "dl.asminternational.org",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/HomeworkHelp/comments/75yvk1/materials_science_when_should_the_lever_rule_be",
+    "name": "[Materials Science] When should the lever rule be applied? - Reddit",
+    "snippet": "Pearlite is exactly .76% carbon because it is always 12% cementite (6.67%C) and 88% ferrite (.008%C approximately 0%C).\nThe lever rule is used to find the weight fraction of a phase (let's assume ferrite). In order to find this, you need to know the weight percent of carbon in ...",
+    "host_name": "www.reddit.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.tec-science.com/material-science/iron-carbon-phase-diagram/determination-of-microstructure-and-phase-fractions",
+    "name": "Determination of microstructure and phase fractions in steels",
+    "snippet": "For steels, the microstructure and phase fractions in the iron-carbon diagram can be determined using the lever rule.",
+    "host_name": "www.tec-science.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.slideshare.net/slideshow/f-fec-diagram/28397101",
+    "name": "fe-c diagram | PPTX - Slideshare",
+    "snippet": "The document discusses the iron-carbon phase diagram and the microstructures that form in steels of different carbon compositions.",
+    "host_name": "www.slideshare.net",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]

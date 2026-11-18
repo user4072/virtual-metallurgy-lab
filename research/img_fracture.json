@@ -1,0 +1,43 @@
+{
+  "success": true,
+  "query": "scanning electron microscope fractography fatigue failure metal surface",
+  "count": 5,
+  "ranked": true,
+  "results": [
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/906aacc367bd.jpg",
+      "caption": "A high-magnification scanning electron microscope (SEM) image showing the cracked, porous microstructure of a material.",
+      "source": "Nanoscience Instruments",
+      "original_width": "900px",
+      "original_height": "956px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/a98dcc3814ba.jpg",
+      "caption": "Scanning electron microscope image showing cubic crystals and a cavity, with text: 20kV X120 100um.",
+      "source": "Metallurgical Engineering Services",
+      "original_width": "1280px",
+      "original_height": "960px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/81394aadb70d.jpeg",
+      "caption": "A high-magnification scanning electron microscope (SEM) image showing a rough, porous surface with a 1.0μm scale bar.",
+      "source": "Elmet LLC",
+      "original_width": "1024px",
+      "original_height": "768px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/ee9d1a310923.jpg",
+      "caption": "A scanning electron microscope image showing the microstructure of a material with cracks and pores.",
+      "source": "Nanoscience Instruments",
+      "original_width": "1022px",
+      "original_height": "1085px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/292ff27f5c70.jpg",
+      "caption": "A high-magnification scanning electron microscope (SEM) image showing a porous material's surface texture. Text: 80 μm, 1000x, 269 μm, 10kV-Point, BSD Full.",
+      "source": "Nanoscience Instruments",
+      "original_width": "900px",
+      "original_height": "956px"
+    }
+  ]
+}

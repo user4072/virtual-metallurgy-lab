@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://openresearchsoftware.metajnl.com/articles/jors.140",
+    "name": "CALPHAD-based Computational Thermodynamics in Python",
+    "snippet": "The pycalphad software package is a free and open-source Python library for designing thermodynamic models, calculating phase diagrams and investigating ...",
+    "host_name": "openresearchsoftware.metajnl.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://mooseframework.inl.gov/releases/moose/2021-05-18/python/CALPHAD_free_energies.html",
+    "name": "CALPHAD Thermodynamic Database free energy extraction - MOOSE",
+    "snippet": "The free_energy.py tool ( python/calphad/free_energy.py ) allows users to extract free energy expressions from *.tdb thermodynamic database files (ThermoCalc ...",
+    "host_name": "mooseframework.inl.gov",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/richardotis/pycalphad-sandbox/blob/master/steel_database_fix.tdb",
+    "name": "pycalphad-sandbox/steel_database_fix.tdb at master - GitHub",
+    "snippet": "$ This database contains edited and newly assessed thermodynamic data for steel. ... $ Fe, Al, B, C, Co, Cr, Cu, H, Hf, La, Mn, Mo, N, Nb, Ni, O, P, Pd, S, Si ...",
+    "host_name": "github.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/311959120_pycalphad_CALPHAD-based_Computational_Thermodynamics_in_Python",
+    "name": "(PDF) pycalphad: CALPHAD-based Computational  - ResearchGate",
+    "snippet": "The pycalphad software package is a free and open-source Python library for designing thermodynamic models, calculating phase diagrams and ...",
+    "host_name": "www.researchgate.net",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://figshare.com/articles/code/pycalphad_0_4_2/4213689",
+    "name": "pycalphad 0.4.2 - figshare",
+    "snippet": "pycalphad is a free and open-source Python library for designing thermodynamic models, calculating phase diagrams and investigating phase ...",
+    "host_name": "figshare.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://www.nature.com/articles/s41524-022-00824-5",
+    "name": "Cellular automaton simulation and experimental validation of",
+    "snippet": "This 3-D CA model is useful for predicting and optimizing the solidification microstructure including eutectic transformation during solidification processing.",
+    "host_name": "www.nature.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S1359645423009667",
+    "name": "Development of a rapid solidification model for additive",
+    "snippet": "The present model is a simple 1-dimensional solidification model which can predict the primary dendrite arm spacing (PDAS), microsegregation, and primary and ...",
+    "host_name": "www.sciencedirect.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://castman.co.kr/phase-field-simulation-of-al-fe-mn-si-quaternary-eutectic-solidification",
+    "name": "Phase Field Simulation of Al–Fe–Mn–Si Quaternary Eutectic",
+    "snippet": "The 3D phase-field simulation effectively visualizes the microstructure evolution, showing the spatial distribution and interactions of the different phases.",
+    "host_name": "castman.co.kr",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9962219",
+    "name": "Phase-Field Simulation of Microstructure Formation in Gas-Atomized",
+    "snippet": "The microstructural evolution of gas-atomized powder particles during solidification was investigated by phase-field simulations using the software tool ...",
+    "host_name": "pmc.ncbi.nlm.nih.gov",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/321318031_Phase-field_simulation_of_the_solidified_microstructure_in_a_new_commercial_6_aluminum_alloy_ingot_supported_by_experimental_measurements",
+    "name": "(PDF) Phase-field simulation of the solidified microstructure in a new",
+    "snippet": "the secondary dendrite arm spacing (SDAS) rate. Eutectic Si, is completely spheroidized at cooling rate of 2.6 K/s;",
+    "host_name": "www.researchgate.net",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]

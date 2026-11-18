@@ -1,0 +1,56 @@
+[
+  {
+    "url": "https://www.sciencedirect.com/topics/materials-science/hall-petch-strengthening",
+    "name": "Hall-Petch Strengthening - an overview | ScienceDirect Topics",
+    "snippet": "The Orowan strengthening effect increases the composite's strength by decreasing the average particle size.",
+    "host_name": "www.sciencedirect.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/304913901_Six_decades_of_the_Hall-Petch_effect_-_a_survey_of_grain-size_strengthening_studies_on_pure_metals",
+    "name": "Six decades of the Hall–Petch effect – a survey of grain-size",
+    "snippet": "Refining a metal's grain size can result in dramatic increases in strength, Hall–Petch equation. Δσ Oro is the Orowan strengthening contribution,",
+    "host_name": "www.researchgate.net",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://lwlin.me.berkeley.edu/me138/paper4.2.pdf",
+    "name": "[PDF] Hall–Petch relation and boundary strengthening",
+    "snippet": "The relation between the yield stress and the grain size has been investigated for a number of metals and alloys and good agreement with Eq. (1) has been found.",
+    "host_name": "lwlin.me.berkeley.edu",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.universitywafer.com/hall-petch-equation.html?srsltid=AfmBOopLvWCD6-FhAdcMLYi3pFg-8R8G8gG1qoC8Rdr9v3_lttXZHM0P",
+    "name": "Hall–Petch Equation | Grain Size Strengthening in Materials Science",
+    "snippet": "The Hall–Petch equation describes the relationship between the grain size of a polycrystalline material and its yield strength.",
+    "host_name": "www.universitywafer.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.quora.com/Does-the-Hall-Petch-equation-apply-to-a-strain-hardening-process-Does-deformation-change-the-grain-size",
+    "name": "Does the Hall Petch equation apply to a strain hardening process",
+    "snippet": "While Hall- Petch relates yield strength to grain size, it does not predict strength through strain hardening.",
+    "host_name": "www.quora.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://me.umd.edu/sites/enme.umd.edu/files/documents/Armstrong_EAIA2016.pdf",
+    "name": "[PDF] Hall-Petch Relationship - Mechanical Engineering",
+    "snippet": "The yield stresses for the ultrafine grain size measurements are shown to increase by an order-of-magnitude or more for aluminum and copper, and ...",
+    "host_name": "me.umd.edu",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  }
+]

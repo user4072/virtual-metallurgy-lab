@@ -1,0 +1,111 @@
+{
+  "version": 1,
+  "generated": "2026-11-18",
+  "databases": [
+    {
+      "file": "mc_fe_v2.062.tdb",
+      "sha256": "a089062cbbeec69d99eee28f2037bd53f2302f98f2676e83bff95f77ff1055a7",
+      "bytes": 475372,
+      "title": "MatCalc open steel database v2.062",
+      "system": "Fe base, 26 elements",
+      "elements": "Fe Al B C Co Cr Cu H Hf La Mn Mo N Nb Ni O P Pd S Si Ta Ti V W Y",
+      "phases": "~100 incl. FCC_A1, BCC_A2, CEMENTITE, M23C6, M7C3, M6C, LAVES",
+      "source": "TU Wien / MatCalc open thermodynamic database (created 2024-11-08)",
+      "license": "ODbL 1.0",
+      "citation": "MatCalc Open Thermodynamic Databases, Povoden-Karadeniz, E. et al., TU Wien, Austria. https://www.matcalc.at/open-databases/ (mc_fe v2.062, ODbL 1.0)",
+      "encoding_note": "Converted from ISO-8859-1 to UTF-8 by scripts/prepare_tdb.py (reproducible provenance chain). Stripped MatCalc-only statements (REFERENCE_ELEMENT, ADD_COMPOSITION_SET, ATTACH_CONTRIBUTION, PARAMETER HMVA) and fixed small export artifacts (semicolon typo in one G_PHASE parameter, doubled decimals, duplicated range terminators, stray '>' continuation markers, a REF line shared by two PARAMETER statements, two-token REFs). All G/L/TC/BMAGN parameters otherwise unchanged.",
+      "used_for": "Fe-C binary scans, steel TTT/CCT anchors (Ae1/Ae3), Fe-Cr-Ni equilibrium"
+    },
+    {
+      "file": "mc_fe_v2.062_clean_fecmnsicrmoni.tdb",
+      "sha256": "440e37ce7b7bfa6c90904637c30c9f3d523b3762a31af12e9db129fab2c6e0cd",
+      "bytes": 359042,
+      "title": "Fe-C-Mn-Si-Cr-Mo-Ni extract of MatCalc mc_fe v2.062",
+      "system": "Fe-C-Mn-Si-Cr-Mo-Ni",
+      "elements": "Fe C Mn Si Cr Mo Ni (+VA)",
+      "phases": "FCC_A1, BCC_A2, CEMENTITE, M23C6, M7C3, M6C, LAVES_PHASE, CHI_A12, SIGMA, KSI_CARBIDE, liquid",
+      "source": "Clean ASCII extract of MatCalc mc_fe v2.062 (provenance-chained via scripts/make_clean_tdb.py in the tttsteel project)",
+      "license": "ODbL 1.0 (derived, share-alike attribution)",
+      "citation": "Derived from MatCalc mc_fe v2.062 (TU Wien, ODbL 1.0); extraction chain documented in the repository.",
+      "used_for": "Fast steel TTT/CCT/equilibrium for 6-solute steels"
+    },
+    {
+      "file": "mc_ni_v2.034.tdb",
+      "sha256": "f06171558d31bb63fc1859f47467f0551836e810b32ec8789dc7e4fe0dc9fa32",
+      "bytes": 389379,
+      "title": "MatCalc open Ni-superalloy database v2.034",
+      "system": "Ni base, 22 elements",
+      "elements": "Ni Al B C Co Cr Cu Fe Hf La Mn Mo N Nb O S Si Ti V W Y Zr",
+      "phases": "~98 incl. FCC_A1, BCC_A2/B2, GAMMA_PRIME, ETA, DELTA, LAVES, M23C6, M6C, MU, sigma",
+      "source": "TU Wien / MatCalc open thermodynamic database (Povoden-Karadeniz), pycalphad-format fixes by B. Bocklund 2021",
+      "license": "ODbL 1.0",
+      "citation": "MatCalc Open Thermodynamic Databases, Povoden-Karadeniz, E. et al., TU Wien, Austria. https://www.matcalc.at/open-databases/ (mc_ni v2.034, ODbL 1.0)",
+      "used_for": "Ni-Cr-Co ternary tab, superalloy presets, gamma-prime equilibrium"
+    },
+    {
+      "file": "cocrfemnni_quinary.tdb",
+      "sha256": "e09e2175b69f56ef835db1bf4961830c5077e051f2baa35307a373a47e9054c7",
+      "bytes": 266853,
+      "title": "Co-Cr-Fe-Mn-Ni (Cantor) extract of MatCalc mc_fe v2.062",
+      "system": "Co-Cr-Fe-Mn-Ni",
+      "elements": "Co Cr Fe Mn Ni (+VA)",
+      "phases": "FCC_A1, BCC_A2, SIGMA, liquid + carbides",
+      "source": "Clean extract of MatCalc mc_fe v2.062 (ODbL attributed)",
+      "license": "ODbL 1.0 (derived)",
+      "citation": "Derived from MatCalc mc_fe v2.062 (TU Wien, ODbL 1.0).",
+      "used_for": "Cantor alloy (CoCrFeMnNi) preset equilibrium"
+    },
+    {
+      "file": "fecrni_ternary.tdb",
+      "sha256": "f7ec3c5972bf58f0f074355c0d9ef88e8cdd244cd074d1f4b6046625ced204a1",
+      "bytes": 260422,
+      "title": "Fe-Cr-Ni extract of MatCalc mc_fe v2.062",
+      "system": "Fe-Cr-Ni",
+      "elements": "Fe Cr Ni (+VA)",
+      "phases": "FCC_A1, BCC_A2, SIGMA, liquid + carbides",
+      "source": "Clean extract of MatCalc mc_fe v2.062 (ODbL attributed)",
+      "license": "ODbL 1.0 (derived)",
+      "citation": "Derived from MatCalc mc_fe v2.062 (TU Wien, ODbL 1.0).",
+      "used_for": "Stainless steel (304/316-type) equilibrium"
+    },
+    {
+      "file": "alniti_ternary.tdb",
+      "sha256": "a0aa15ccbaa6b4c27b339c9637a1d9a818d9a7d94c15708b8f16d6aa7572411e",
+      "bytes": 177031,
+      "title": "Al-Ni-Ti extract of MatCalc mc_ni v2.034",
+      "system": "Al-Ni-Ti",
+      "elements": "Al Ni Ti (+VA)",
+      "phases": "LIQUID, FCC_A1, BCC_A2, GAMMA_PRIME, BCC_B2, ETA",
+      "source": "Clean extract of MatCalc mc_ni v2.034 (ODbL attributed)",
+      "license": "ODbL 1.0 (derived)",
+      "citation": "Derived from MatCalc mc_ni v2.034 (TU Wien, ODbL 1.0).",
+      "used_for": "Al-Ni-Ti gamma-prime strengthening demos"
+    },
+    {
+      "file": "alnico_ternary.tdb",
+      "sha256": "c512855766949d4f2b840e4d96d246631b03b8aa3bd685056eb95cbe91e26d50",
+      "bytes": 167212,
+      "title": "Al-Ni-Co extract of MatCalc mc_ni v2.034",
+      "system": "Al-Ni-Co",
+      "elements": "Al Ni Co (+VA)",
+      "phases": "LIQUID, FCC_A1, BCC_A2, HCP_A3, GAMMA_PRIME, BCC_B2",
+      "source": "Clean extract of MatCalc mc_ni v2.034 (ODbL attributed)",
+      "license": "ODbL 1.0 (derived)",
+      "citation": "Derived from MatCalc mc_ni v2.034 (TU Wien, ODbL 1.0).",
+      "used_for": "Al-Ni-Co (alnico magnet alloy) equilibrium"
+    },
+    {
+      "file": "COST507.tdb",
+      "sha256": "5b321bc8cf0eec17c1f204f72e82d048d864756c62ede84fb768b277def823ba",
+      "bytes": 305608,
+      "title": "COST 507 light-alloy thermodynamic database (Al base)",
+      "system": "Al base (Al-Cu, Al-Si, Al-Mg, Al-Zn, ...)",
+      "elements": "Al Cu Mg Si Zn Fe Mn Ni Ti Cr Li + more",
+      "phases": "FCC_A1, LIQUID, DIAMOND_A4, ALCU_THETA, etc.",
+      "source": "COST Action 507, distributed with pycalphad (tests/databases/COST507.tdb)",
+      "license": "See COST 507 usage conditions (permitted for research/teaching with citation)",
+      "citation": "COST 507: Thermochemical database for light metal alloys, I. Ansara, A.T. Dinsdale, M.H. Rand (eds.), EUR 18170 EN (1998). Distributed with pycalphad.",
+      "used_for": "Al-Cu and Al-Si phase diagrams, Scheil solidification"
+    }
+  ]
+}

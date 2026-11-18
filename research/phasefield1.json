@@ -1,0 +1,56 @@
+[
+  {
+    "url": "https://www.diva-portal.org/smash/get/diva2:404154/FULLTEXT01.pdf",
+    "name": "[PDF] Simulation of Phase Transformations and Coarsening - Diva-Portal.org",
+    "snippet": "The microstructure models have all in common that size distributions of grains or particles are simulated with mean-field approaches. Several of the models also ...\nCoarsening and grain growth both refer to the interface energy driven evolution of a system of particles to larger mean sizes during heating, where smaller ...",
+    "host_name": "www.diva-portal.org",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/351164871_Phase-field_modeling_of_grain_evolutions_in_additive_manufacturing_from_nucleation_growth_to_coarsening",
+    "name": "(PDF) Phase-field modeling of grain evolutions in additive",
+    "snippet": "A three-dimensional phase-field model is developed to simulate grain evolutions during powder-bed-fusion (PBF) additive manufacturing, ...",
+    "host_name": "www.researchgate.net",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.mdpi.com/2073-4352/12/9/1305",
+    "name": "Simulation of Microstructure Evolution in Mg Alloys by Phase-Field",
+    "snippet": "This article provides a review of the applications of the phase-field method in Mg alloys. First, classic phase-field models and the derived multi-phase and ...",
+    "host_name": "www.mdpi.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/topics/engineering/microstructure-evolution",
+    "name": "Microstructure Evolution - an overview | ScienceDirect Topics",
+    "snippet": "Microstructure evolution can be divided into recrystallization and grain growth during hot forming and phase transformations during cooling. Modeling of the ...",
+    "host_name": "www.sciencedirect.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.micress.de/applications.html",
+    "name": "MICRESS® - The MICRostructure Evolution Simulation Software",
+    "snippet": "3D phase-field simulations of graphite growth in ductile cast iron. The MICRESS® software was applied to simulate the microstructure evolution of ...",
+    "host_name": "www.micress.de",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=pWAbHzV3Ez4",
+    "name": "Phase-Field Modeling of Microstructural Evolution Resulting from",
+    "snippet": "... phase/polycrystalline microstructures, and diffusion and reaction kinetics. Selected simulation results will demonstrate the ability of phase- ...",
+    "host_name": "www.youtube.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  }
+]

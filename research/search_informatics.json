@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0927025622004645",
+    "name": "Machine-learning-based surrogate modeling of microstructure",
+    "snippet": "Full length article. Machine-learning-based surrogate modeling of microstructure evolution using phase-field.",
+    "host_name": "www.sciencedirect.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.nature.com/articles/s41524-020-00471-8",
+    "name": "Accelerating phase-field-based microstructure evolution predictions",
+    "snippet": "Our results show that our machine-learned surrogate model can predict the spinodal evolution of a two-phase mixture in a fraction of a second ...",
+    "host_name": "www.nature.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.programmaster.org/PM/PM.nsf/ApprovedAbstracts/791F925FBE7ECD61852586FF00784498?OpenDocument",
+    "name": "About this Abstract - ProgramMaster.org",
+    "snippet": "Accelerating Phase-field Based Predictions via Surrogate Models Trained by Machine Learning Methods. Author(s), Remi Dingreville, David Montes de Oca Zapiain ...",
+    "host_name": "www.programmaster.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.semanticscholar.org/paper/25c8195849b9e0f4fa78e495d01ffc5384329709",
+    "name": "Machine-learning-based surrogate modeling of microstructure",
+    "snippet": "Predicting the microstructural and morphological evolution of materials through phase-field modelling is computationally intensive,",
+    "host_name": "www.semanticscholar.org",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://cris.vtt.fi/en/publications/machine-learning-surrogates-for-phase-field-modelling-of-solidifi",
+    "name": "Machine Learning Surrogates For Phase-Field Modelling Of",
+    "snippet": "The goal of this thesis was to investigate whether a machine learning surrogate could replace the phase-field model in predicting the ...",
+    "host_name": "cris.vtt.fi",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.nist.gov/publications/surrogate-modeling-microstructure-prediction-additive-manufacturing",
+    "name": "Surrogate modeling of microstructure prediction in additive",
+    "snippet": "This work addresses this challenge and develops a novel approach to surrogate modeling. First, a dimension reduction method based on combining the concepts of ...",
+    "host_name": "www.nist.gov",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.osti.gov/biblio/1755460",
+    "name": "Accelerating phase-field-based microstructure evolution predictions",
+    "snippet": "Accelerating phase-field-based microstructure evolution predictions via surrogate models trained by machine learning methods. Journal Article · ...",
+    "host_name": "www.osti.gov",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://repositories.lib.utexas.edu/items/33aef12a-d5d8-4f94-9002-774ec3964ffd",
+    "name": "Numerical simulations and machine learning surrogates for",
+    "snippet": "This dissertation focuses on efficient surrogate models for predicting the solidified microstructure. Our first attempt is to reduce the cost of dendrite ...",
+    "host_name": "repositories.lib.utexas.edu",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  }
+]

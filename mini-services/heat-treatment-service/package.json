@@ -1,0 +1,8 @@
+{
+  "name": "heat-treatment-service",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "bash start.sh"
+  }
+}

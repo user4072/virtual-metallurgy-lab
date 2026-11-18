@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://github.com/richardotis/pycalphad-sandbox/blob/master/steel_database_fix.tdb",
+    "name": "pycalphad-sandbox/steel_database_fix.tdb at master - GitHub",
+    "snippet": "pycalphad experiments and debugging notebooks. Contribute to richardotis/pycalphad-sandbox development by creating an account on GitHub.",
+    "host_name": "github.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/pycalphad/pycalphad/discussions/553",
+    "name": "Resources with step-by-step example calculations to better  - GitHub",
+    "snippet": "TDB files: the closest thing to a specification for TDB files is the Database Manager's Guide in the Thermo-Calc Documentation Set.",
+    "host_name": "github.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/pycalphad/pycalphad/blob/develop/examples/BinaryExamples.ipynb",
+    "name": "pycalphad/examples/BinaryExamples.ipynb at develop - GitHub",
+    "snippet": "These are a few examples of how to use Thermo-Calc TDB files to calculate isobaric binary phase diagrams.",
+    "host_name": "github.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://groups.google.com/g/pycalphad/c/c8LJV-8JFkc",
+    "name": "Troubles using matcalc steel database - Google Groups",
+    "snippet": "Here are the download links of the fixed for pycalphad parsing tdb file the original matcalc fe based alloys tdb /Download/Database/mc_fe_v2. alphad db = ...",
+    "host_name": "groups.google.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/richardotis/pycalphad-sandbox/blob/master/crfeni_mie.tdb",
+    "name": "pycalphad-sandbox/crfeni_mie.tdb at master - GitHub",
+    "snippet": "Download raw file. Open symbols panel. Edit and raw actions. $ CRFENI $ $ TDB-file for the thermodynamic assessment of the Cr-Fe-Ni system ...",
+    "host_name": "github.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  }
+]

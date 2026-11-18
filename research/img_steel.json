@@ -1,0 +1,50 @@
+{
+  "success": true,
+  "query": "steel pearlite bainite martensite microstructure optical microscope metallography",
+  "count": 6,
+  "ranked": true,
+  "results": [
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/e241412393d5.jpg",
+      "caption": "The image contains a large amount of text information and you do not need to output the text completely.",
+      "source": "Springer Nature",
+      "original_width": "1200px",
+      "original_height": "1358px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/273d43355ae4.jpg",
+      "caption": "Scanning electron microscope image showing a material surface with fine parallel lines and cracks. Text: SE1 20.0kV x2000 5um",
+      "source": "LFF Group",
+      "original_width": "1600px",
+      "original_height": "1249px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/bfa965bce57f.jpg",
+      "caption": "Two micrographs showing metal microstructures: a) Carbide and Austenite, b) Ferrite and Pearlite. Text: Carbide, Austenite, Ferrite, Pearlite, 50 μm, 200 μm.",
+      "source": "ZHY Casting",
+      "original_width": "2068px",
+      "original_height": "774px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/856a41996d8f.jpg",
+      "caption": "Aerial view of a textured asphalt surface with two black square markers and a thin crack. suitable for background image",
+      "source": "Reddit",
+      "original_width": "3840px",
+      "original_height": "2160px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/aa62666c7fb8.jpg",
+      "caption": "The image contains a data chart and text. Text: Ferrite, Pearlite, 0.2 mm, Figure 4 – Example of Ferritic-Pearlitic Microstructure [4], Figure 5 – Diagrammatic illustration of crystalline growth in a troostite nodule.",
+      "source": "LFF Group",
+      "original_width": "3318px",
+      "original_height": "1403px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/6f4bc3f99df1.jpg",
+      "caption": "A grayscale scanning electron microscope image of a test specimen showing detailed surface texture and pores.",
+      "source": "Reddit",
+      "original_width": "1600px",
+      "original_height": "1474px"
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8199147",
+    "name": "Phase Diagram of Binary Alloy Nanoparticles under High Pressure",
+    "snippet": "CALPHAD (CALculation of PHAse Diagram) is a useful tool to construct phase diagrams of various materials under different thermodynamic conditions.",
+    "host_name": "pmc.ncbi.nlm.nih.gov",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.metallurgy.nist.gov/phase/papers/jom/thermo_model.html",
+    "name": "Thermodynamic Modeling of Multicomponent Phase Equilibria",
+    "snippet": "The present paper gives an overview of the CALPHAD method and recent progress made. A brief history is given then the scope of phase diagram calculations is ...",
+    "host_name": "www.metallurgy.nist.gov",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://calphad.com/calphad_method",
+    "name": "CALPHAD Method",
+    "snippet": "The CALPHAD method (an acronym for CALculation of PHAse Diagrams) is a computational framework developed to model the phase stability and thermodynamic ...\nOriginating in the early 1970s through the pioneering work of Larry Kaufman and H. Bernstein, CALPHAD was designed to overcome the limitations of purely experimental phase diagram determination, especially as alloy systems grew increasingly complex.",
+    "host_name": "calphad.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/pii/S2772834X24000137",
+    "name": "A CALPHAD thermodynamic model for multicomponent alloys under",
+    "snippet": "This work developed a CALPHAD thermodynamic model for multicomponent alloys under pressure and achieved its integration into the CALPHAD design framework for ...",
+    "host_name": "www.sciencedirect.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://users.encs.concordia.ca/~tmg/images/2/25/Application_of_Calphad_Method.pdf",
+    "name": "[PDF] Application of the CALPHAD method to material design",
+    "snippet": "The outline of the CALPHAD method, which has been developed to alleviate the difficulty in obtaining phase diagrams by experiments alone, is presented.",
+    "host_name": "users.encs.concordia.ca",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.researchgate.net/publication/317317655_THERMODYNAMIC_STUDY_OF_BINARY_ALLOY_SYSTEM_Co-Cr_USING_CALPHAD_METHOD",
+    "name": "THERMODYNAMIC STUDY OF BINARY ALLOY SYSTEM (Co–Cr",
+    "snippet": "The CALPHAD (calculation of phase diagram) was carried out by Thermo-Calc soft-ware for the mole fraction of equilibrium phase of the alloys.",
+    "host_name": "www.researchgate.net",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://arxiv.org/html/2411.15351v1",
+    "name": "Accelerating CALPHAD-based Phase Diagram Predictions in  - arXiv",
+    "snippet": "Accurate phase diagram prediction is crucial for understanding alloy thermodynamics and advancing materials design. While traditional CALPHAD ...",
+    "host_name": "arxiv.org",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=sQCe9IchDMs",
+    "name": "Thermodynamics - computer calculation of phase diagrams - YouTube",
+    "snippet": "... alloys. Therefore, methods have been developed for doing this in a seamless manner; these methods have been developed that express the ...",
+    "host_name": "www.youtube.com",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  }
+]

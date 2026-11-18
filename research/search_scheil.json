@@ -1,0 +1,56 @@
+[
+  {
+    "url": "https://thermocalc.com/products/thermo-calc/scheil-solidification-simulations",
+    "name": "Scheil Equations Simulations - Thermo-Calc Software",
+    "snippet": "For typical cooling rates encountered in foundries, the assumptions in Scheil Solidification Simulations have been shown to be quite good, and often much ...",
+    "host_name": "thermocalc.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.mdpi.com/2073-4352/13/5/842",
+    "name": "Impact of Dendrite Tip Kinetics and Finite Solute Diffusion - MDPI",
+    "snippet": "The temperature gradient and cooling rate at the bottom of the melt pool are 1.96 × 10 7 K/m and 6.92 × 10 5 K/s, respectively. Thus, the solidification ...",
+    "host_name": "www.mdpi.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.diva-portal.org/smash/get/diva2:1228826/FULLTEXT01.pdf",
+    "name": "[PDF] Solidification Modeling of Microsegregation - Diva-Portal.org",
+    "snippet": "Cooling rates for the temperature interval are chosen and thereafter used to determine the solidification time which, in turn, is used to define the secondary ...",
+    "host_name": "www.diva-portal.org",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8234411",
+    "name": "CA Modeling of Microsegregation and Growth of Equiaxed  - PMC",
+    "snippet": "Numerical simulations of solidification were performed for a single dendrite using cooling rates of 5 K/s, 25 K/s and 45 K/s and for many ...",
+    "host_name": "pmc.ncbi.nlm.nih.gov",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0924013620302430",
+    "name": "Multi-component numerical simulation and experimental study of",
+    "snippet": "The effects of calculation domain and cooling rate on the simulations were investigated, and different calculation widths and cooling rates were adopted in the ...",
+    "host_name": "www.sciencedirect.com",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "http://www.scielo.br/scielo.php?script=sci_arttext&pid=S1516-14392017000200423&lng=en&tlng=en",
+    "name": "Phase-Field Simulation of Microsegregation and Dendritic Growth",
+    "snippet": "The phase-field model offers the prospect of being able to perform realistic simulation experiments on dendrite growth in metallic systems. In this paper, the ...",
+    "host_name": "www.scielo.br",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  }
+]
