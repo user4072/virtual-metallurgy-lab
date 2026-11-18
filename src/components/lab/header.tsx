@@ -66,12 +66,12 @@ export function Header({ onToggleSidebar }: HeaderProps) {
               <span className="ml-2 align-middle font-sans text-[10px] font-normal text-muted-foreground">
                 Created by{" "}
                 <a
-                  href="https://github.com/sintheuser/"
+                  href="https://github.com/user4072/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-medium text-foreground/80 underline decoration-dotted underline-offset-2 hover:text-primary hover:decoration-primary"
                 >
-                  Sintheuser
+                  Sina
                 </a>
               </span>
             </h1>

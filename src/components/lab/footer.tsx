@@ -52,7 +52,7 @@ export function Footer() {
             {t.footer.docs}
           </span>
           <a
-            href="https://github.com/sintheuser/"
+            href="https://github.com/user4072/"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1 hover:text-foreground"
