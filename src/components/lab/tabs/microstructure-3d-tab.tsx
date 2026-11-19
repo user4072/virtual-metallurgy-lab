@@ -1,28 +1,35 @@
 "use client";
 
 /**
- * Microstructure3dTab — realistic 3D polycrystal cube.
+ * Microstructure3dTab — realistic 3D polycrystal cube (metal colours).
  * -----------------------------------------------------------------------------
- * A cubic specimen whose six faces carry genuine 2D Voronoi grain maps
- * (polygonal grains with straight faceted edges, dark boundary networks and
- * per-grain crystallographic orientation shading), rendered as textured
- * geometry with a metallic PBR material — the way RVE software (Neper,
- * Mimics) presents synthetic polycrystals.
+ * A cubic specimen whose six faces carry true 2D Voronoi grain maps rendered
+ * as REAL METAL colors per alloy system (not rainbow EBSD):
  *
- * Physics wiring: the grain count on each face follows the surrogate grain
- * size (faster cooling → finer grains → Hall-Petch), precipitate dots follow
- * the precipitate density (Orowan). Strengthening contributions come from
- * /api/predict_phase. Manual orbit + wheel zoom; auto-rotate toggle.
+ *   • Al-Cu   — bright silvery aluminium matrix, coppery θ-Al₂Cu particles
+ *   • Al-Si   — silvery matrix, darker grey Si platelets
+ *   • Fe-C    — steel-grey ferrite/pearlite, dark carbides
+ *   • Ni-Cr-Co— bright nickel-white matrix
+ *
+ * Every sidebar variable drives the structure physically:
+ *   • composition % & cooling rate → grain size → grains-per-face
+ *     (faster cooling / more solute → finer grains, Hall–Petch)
+ *   • composition & ageing temperature → precipitate density, and
+ *     precipitates DISSOLVE when the ageing T exceeds the solvus
+ *   • all textures rebuild when the structure changes
+ *
+ * Rendering: cubic geometry with per-face canvas textures, metallic PBR
+ * material, studio lighting; drag to orbit, wheel to zoom.
  */
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
-import { ALLOY_SYSTEMS } from "@/lib/metallurgy";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Box, Pause, Play, RotateCcw, ZoomIn, ZoomOut } from "lucide-react";
 import { useLabStore } from "@/store/lab-store";
+import { ALLOY_SYSTEMS, R_GAS } from "@/lib/metallurgy";
 import { usePredictPhase } from "@/components/lab/use-lab-data";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -41,41 +48,69 @@ function astmNumber(grainUm: number): number {
   return Math.max(0, -3.2877 - 6.6439 * Math.log10(Math.max(grainUm / 1000, 1e-6)));
 }
 
+/** Real-metal palettes per alloy system. */
+interface MetalPalette {
+  /** matrix grain base colour (etched metal) */
+  base: [number, number, number];
+  /** hue jitter per grain (subtle — real etched grains are near-grey) */
+  jitter: number;
+  /** second-phase particle colour */
+  precip: [number, number, number];
+  /** second-phase display name */
+  precipName: string;
+}
+
+const METAL_PALETTES: Record<string, MetalPalette> = {
+  "Al-Cu": { base: [205, 208, 214], jitter: 14, precip: [184, 122, 74], precipName: "θ-Al₂Cu (coppery)" },
+  "Al-Si": { base: [208, 211, 216], jitter: 12, precip: [118, 120, 126], precipName: "β-Si (grey)" },
+  "Fe-C": { base: [148, 150, 158], jitter: 10, precip: [62, 62, 70], precipName: "Fe₃C (dark)" },
+  "Ni-Cr-Co": { base: [216, 218, 224], jitter: 10, precip: [150, 152, 160], precipName: "γ′ (faint)" },
+};
+
+const DEFAULT_PALETTE: MetalPalette = {
+  base: [178, 180, 186],
+  jitter: 10,
+  precip: [90, 92, 98],
+  precipName: "2nd phase",
+};
+
 /**
- * Draw one face's grain map onto a canvas:
- * jittered-grid 2D Voronoi (no sliver cells), per-grain IPF-like tint,
- * dark boundary network, sparse precipitate dots, subtle vignette.
+ * Render one face's grain map as an etched-metal micrograph:
+ * jittered-grid Voronoi (uniform cells), per-grain metal tint with subtle
+ * lightness variation, dark boundary grooves, system-colored precipitates.
  */
 function drawFaceTexture(
   canvas: HTMLCanvasElement,
   opts: {
-    grainCount: number;
+    cellsAcross: number;
     precipCount: number;
     seed: number;
     faceId: number;
     size: number;
+    palette: MetalPalette;
   },
 ) {
-  const { grainCount, precipCount, seed, faceId, size } = opts;
+  const { cellsAcross, precipCount, seed, faceId, size, palette } = opts;
   const ctx = canvas.getContext("2d");
   if (!ctx) return;
   const rng = mulberry32(seed * 7919 + faceId * 104729);
 
-  const seeds: { x: number; y: number; tint: number; hue: number }[] = [];
-  const side = Math.max(3, Math.round(Math.sqrt(grainCount)));
+  // jittered-grid Voronoi seeds → uniform polygonal cells across the face
+  const seeds: { x: number; y: number; light: number }[] = [];
+  const side = Math.max(2, cellsAcross);
   for (let gy = 0; gy < side; gy++) {
     for (let gx = 0; gx < side; gx++) {
       seeds.push({
         x: (gx + 0.5) / side + (rng() - 0.5) * 0.8 / side,
         y: (gy + 0.5) / side + (rng() - 0.5) * 0.8 / side,
-        tint: 0.35 + 0.45 * rng(),
-        hue: rng(),
+        light: 0.78 + rng() * 0.44, // per-grain etch response
       });
     }
   }
 
   const img = ctx.createImageData(size, size);
   const idMap = new Int32Array(size * size);
+  const [br, bg, bb] = palette.base;
   for (let y = 0; y < size; y++) {
     for (let x = 0; x < size; x++) {
       let best = Infinity;
@@ -90,26 +125,15 @@ function drawFaceTexture(
         }
       }
       idMap[y * size + x] = bi;
-      const s = seeds[bi];
-      const h = s.hue;
-      const sat = 0.32 + 0.38 * (((bi * 37) % 11) / 11);
-      const light = 0.44 + 0.3 * (s.tint - 0.5);
-      const c = (1 - Math.abs(2 * light - 1)) * sat;
-      const hp = h * 6;
-      const xx = c * (1 - Math.abs((hp % 2) - 1));
-      let r = 0, g = 0, b = 0;
-      if (hp < 1) { r = c; g = xx; } else if (hp < 2) { r = xx; g = c; }
-      else if (hp < 3) { g = c; b = xx; } else if (hp < 4) { g = xx; b = c; }
-      else if (hp < 5) { r = xx; b = c; } else { r = c; b = xx; }
-      const m = light - c / 2;
+      const L = seeds[bi].light;
       const o = (y * size + x) * 4;
-      img.data[o] = Math.round((r + m) * 255);
-      img.data[o + 1] = Math.round((g + m) * 255);
-      img.data[o + 2] = Math.round((b + m) * 255);
+      img.data[o] = Math.min(255, br * L);
+      img.data[o + 1] = Math.min(255, bg * L);
+      img.data[o + 2] = Math.min(255, bb * L);
       img.data[o + 3] = 255;
     }
   }
-  // dark boundary network where 4-neighbours differ
+  // dark boundary grooves where 4-neighbours differ
   for (let y = 0; y < size; y++) {
     for (let x = 0; x < size; x++) {
       const i = y * size + x;
@@ -120,41 +144,43 @@ function drawFaceTexture(
       const d = idMap[Math.min(size - 1, y + 1) * size + x];
       if (l !== id || r !== id || u !== id || d !== id) {
         const o = i * 4;
-        img.data[o] = Math.round(img.data[o] * 0.28 + 12);
-        img.data[o + 1] = Math.round(img.data[o + 1] * 0.28 + 12);
-        img.data[o + 2] = Math.round(img.data[o + 2] * 0.3 + 14);
+        img.data[o] = Math.round(img.data[o] * 0.34 + 8);
+        img.data[o + 1] = Math.round(img.data[o + 1] * 0.34 + 8);
+        img.data[o + 2] = Math.round(img.data[o + 2] * 0.36 + 9);
       }
     }
   }
   ctx.putImageData(img, 0, 0);
 
-  // precipitates: dark dots with bright rim
+  // second-phase particles in the system's metal colour
+  const [pr, pg, pb] = palette.precip;
   for (let i = 0; i < precipCount; i++) {
     const x = rng() * size;
     const y = rng() * size;
-    const r = 2 + rng() * 3.5;
+    const r = 2.5 + rng() * 4;
     ctx.beginPath();
     ctx.arc(x, y, r, 0, Math.PI * 2);
-    ctx.fillStyle = "rgba(20,20,24,0.9)";
+    ctx.fillStyle = `rgb(${pr},${pg},${pb})`;
     ctx.fill();
-    ctx.strokeStyle = "rgba(210,205,190,0.55)";
+    ctx.strokeStyle = "rgba(255,255,255,0.5)";
     ctx.lineWidth = 1;
     ctx.stroke();
   }
 
   // SEM vignette
-  const grad = ctx.createRadialGradient(size / 2, size / 2, size * 0.42, size / 2, size / 2, size * 0.72);
-  grad.addColorStop(0, "rgba(255,255,255,0.03)");
-  grad.addColorStop(1, "rgba(0,0,0,0.16)");
+  const grad = ctx.createRadialGradient(size / 2, size / 2, size * 0.42, size / 2, size / 2, size * 0.74);
+  grad.addColorStop(0, "rgba(255,255,255,0.04)");
+  grad.addColorStop(1, "rgba(0,0,0,0.18)");
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, size, size);
 }
 
 function makeFaceTexture(opts: {
-  grainCount: number;
+  cellsAcross: number;
   precipCount: number;
   seed: number;
   faceId: number;
+  palette: MetalPalette;
 }): THREE.CanvasTexture {
   const size = 768;
   const canvas = document.createElement("canvas");
@@ -183,12 +209,37 @@ export function Microstructure3dTab({ active }: { active: boolean }) {
   );
 
   const [animate, setAnimate] = useState(true);
-  const [gen, setGen] = useState(0);
 
+  // ---- physics-driven structure parameters (all from the sidebar) --------
   const grainUm = data?.microstructure?.grainSizeUm ?? 30;
-  const faceGrains = Math.max(6, Math.min(60, Math.round(9000 / Math.pow(Math.max(grainUm, 2), 1.1))) - gen * 4);
   const pptDensity = data?.microstructure?.precipitateDensity ?? 40;
-  const precipCount = Math.max(4, Math.min(60, Math.round(pptDensity / 6)));
+
+  const palette = METAL_PALETTES[s.alloySystem] ?? DEFAULT_PALETTE;
+
+  // grains per face: field width ≈ 160 µm → cellsAcross = 160/grainSize
+  const cellsAcross = Math.max(3, Math.min(42, Math.round(160 / Math.max(grainUm, 4))));
+  // precipitates dissolve when ageing above the solvus (θ unstable)
+  const dissolved = s.heatTreatmentC >= sys.tEutecticC;
+  const precipCount = dissolved
+    ? 0
+    : Math.max(0, Math.min(150, Math.round(pptDensity / 3)));
+
+  // structural signature: textures rebuild whenever ANY driver changes
+  const structureKey = useMemo(
+    () =>
+      [
+        s.alloySystem,
+        s.soluteFraction,
+        s.soluteFraction2,
+        s.coolingRateKs,
+        s.heatTreatmentC,
+        grainUm,
+        precipCount,
+        cellsAcross,
+        s.compExtra ? Object.entries(s.compExtra).map(([k, v]) => k + v.toFixed(2)).join(";") : "",
+      ].join("|"),
+    [s.alloySystem, s.soluteFraction, s.soluteFraction2, s.coolingRateKs, s.heatTreatmentC, grainUm, precipCount, cellsAcross, s.compExtra],
+  );
 
   const mountRef = useRef<HTMLDivElement | null>(null);
   const apiRef = useRef<{ zoom: (d: number) => void; reset: () => void } | null>(null);
@@ -216,23 +267,20 @@ export function Microstructure3dTab({ active }: { active: boolean }) {
     const cube = new THREE.Group();
     scene.add(cube);
 
-    const key = new THREE.DirectionalLight(0xffffff, 2.4);
+    const key = new THREE.DirectionalLight(0xffffff, 2.1);
     key.position.set(3, 4, 5);
     scene.add(key);
-    const fill = new THREE.DirectionalLight(0xbfd4ff, 0.9);
+    const fill = new THREE.DirectionalLight(0xdde6ff, 0.8);
     fill.position.set(-4, -1, 3);
     scene.add(fill);
-    const rim = new THREE.DirectionalLight(0xffd9a0, 0.7);
+    const rim = new THREE.DirectionalLight(0xfff1dc, 0.55);
     rim.position.set(2, -3, -4);
     scene.add(rim);
-    scene.add(new THREE.AmbientLight(0xffffff, 0.35));
+    scene.add(new THREE.AmbientLight(0xffffff, 0.5));
 
     const faces = [0, 1, 2, 3, 4, 5];
     const textures: THREE.CanvasTexture[] = [];
     const materials: THREE.MeshStandardMaterial[] = [];
-    const geometry = new THREE.BoxGeometry(1.6, 1.6, 1.6);
-    const mesh = new THREE.Mesh(geometry);
-    cube.add(mesh);
     const buildTextures = () => {
       textures.forEach((t) => t.dispose());
       materials.forEach((m) => m.dispose());
@@ -240,22 +288,26 @@ export function Microstructure3dTab({ active }: { active: boolean }) {
       materials.length = 0;
       for (const faceId of faces) {
         const tex = makeFaceTexture({
-          grainCount: Math.max(6, faceGrains),
+          cellsAcross,
           precipCount,
-          seed: 1234 + gen,
+          seed: Math.round(grainUm * 100) + precipCount,
           faceId,
+          palette,
         });
         textures.push(tex);
         materials.push(
           new THREE.MeshStandardMaterial({
             map: tex,
-            metalness: 0.62,
-            roughness: 0.38,
+            metalness: 0.42,
+            roughness: 0.42,
           }),
         );
       }
       mesh.material = materials;
     };
+    const geometry = new THREE.BoxGeometry(1.6, 1.6, 1.6);
+    const mesh = new THREE.Mesh(geometry);
+    cube.add(mesh);
     buildTextures();
 
     const frame = new THREE.LineSegments(
@@ -263,8 +315,6 @@ export function Microstructure3dTab({ active }: { active: boolean }) {
       new THREE.LineBasicMaterial({ color: 0x3a3a42 }),
     );
     cube.add(frame);
-
-
 
     let dragging = false;
     let lastX = 0;
@@ -331,7 +381,6 @@ export function Microstructure3dTab({ active }: { active: boolean }) {
       const dt = Math.min(0.1, (now - last) / 1000);
       last = now;
       if (animateRef.current) rotY += dt * 0.3;
-      cube.rotation.set(0, 0, 0);
       placeCamera();
       renderer.render(scene, camera);
     };
@@ -369,13 +418,11 @@ export function Microstructure3dTab({ active }: { active: boolean }) {
       if (renderer.domElement.parentElement === el) el.removeChild(renderer.domElement);
       apiRef.current = null;
     };
-  }, [active, faceGrains, precipCount, gen]);
+    // rebuild whenever the physical structure changes
+  }, [active, structureKey, cellsAcross, precipCount, palette]);
 
   const doZoom = (d: number) => apiRef.current?.zoom(d);
-  const doReset = () => {
-    apiRef.current?.reset();
-    setGen(0);
-  };
+  const doReset = () => apiRef.current?.reset();
 
   const gbArea = 2 / Math.max(grainUm, 0.1);
   const pptSpacing = Math.pow(1 / Math.max(pptDensity, 0.01), 1 / 3);
@@ -401,7 +448,7 @@ export function Microstructure3dTab({ active }: { active: boolean }) {
                 3D Polycrystal Specimen (Voronoi RVE)
               </CardTitle>
               <Badge variant="outline" className="text-[9px]">
-                {faceGrains} grains/face · {precipCount} precipitates
+                {cellsAcross}×{cellsAcross} grains/face · {precipCount} {palette.precipName}
               </Badge>
             </div>
           </CardHeader>
@@ -471,15 +518,21 @@ export function Microstructure3dTab({ active }: { active: boolean }) {
             <MetricRow label="Grain size (model)" value={`${grainUm.toFixed(2)} µm`} accent />
             <MetricRow label="ASTM grain size No." value={astmNumber(grainUm).toFixed(1)} />
             <MetricRow label="Grain boundary area" value={`${gbArea.toFixed(2)} mm²/mm³`} />
-            <MetricRow label="Precipitate density" value={`${pptDensity.toFixed(0)} /µm³`} accent />
-            <MetricRow label="Mean precipitate spacing" value={`${pptSpacing.toFixed(3)} µm`} />
-            <MetricRow label="Grains per face" value={String(faceGrains)} />
+            <MetricRow
+              label="Precipitate density"
+              value={dissolved ? "dissolved (T > solvus)" : `${pptDensity.toFixed(0)} /µm³`}
+              accent
+            />
+            <MetricRow label="Mean precipitate spacing" value={dissolved ? "—" : `${pptSpacing.toFixed(3)} µm`} />
+            <MetricRow label="Grains across face" value={String(cellsAcross)} />
             <div className="mt-2 rounded-md border border-border/40 bg-background/40 p-2.5 text-[10.5px] leading-relaxed text-muted-foreground">
               Each cube face is a true 2D Voronoi section of the 3D grain
-              structure — polygonal grains with faceted edges and a dark
-              boundary network, rendered with a metallic PBR material. Golden
-              dots are second-phase precipitates. Faster cooling → finer
-              grains (Hall–Petch); more solute → denser precipitation (Orowan).
+              structure — polygonal grains in real etched-metal colors
+              ({palette.precipName} particles shown in their natural tint).
+              Sidebar changes rebuild the structure: composition & cooling
+              rate set the grain size (Hall–Petch), composition & ageing
+              temperature set precipitate density, and above the solvus the
+              precipitates dissolve.
             </div>
           </CardContent>
         </Card>
@@ -494,7 +547,7 @@ export function Microstructure3dTab({ active }: { active: boolean }) {
             ) : (
               <>
                 <ContribBar label="Hall–Petch (grain)" value={Math.max(0, data.microstructure.hallPetchMPa - 40)} max={450} color="#d97706" />
-                <ContribBar label="Orowan (precip.)" value={data.yieldStrength.precip * 0.018} max={450} color="#10b981" />
+                <ContribBar label="Orowan (precip.)" value={dissolved ? 0 : data.yieldStrength.precip * 0.018} max={450} color="#10b981" />
                 <ContribBar label="Solid-solution" value={180 * s.soluteFraction} max={450} color="#0891b2" />
                 <ContribBar label="σ₀ (lattice)" value={40} max={450} color="#64748b" fixed />
                 <div className="mt-2 flex items-center justify-between border-t border-border/40 pt-2">
@@ -512,7 +565,8 @@ export function Microstructure3dTab({ active }: { active: boolean }) {
           <CardContent className="p-3 text-[10px] leading-relaxed text-muted-foreground">
             {sys.label} · {(s.soluteFraction * 100).toFixed(1)} wt% {sys.solute}
             {sys.isTernary ? ` + ${(s.soluteFraction2 * 100).toFixed(1)} wt% ${sys.solute2}` : ""} ·
-            cooled at {s.coolingRateKs} K/s · aged {s.heatTreatmentC} °C
+            cooled at {s.coolingRateKs} K/s · aged {s.heatTreatmentC} °C ·{" "}
+            {dissolved ? "precipitates dissolved" : `${palette.precipName} particles present`}
           </CardContent>
         </Card>
       </div>
