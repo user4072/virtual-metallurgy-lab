@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Header } from "@/components/lab/header";
 import { ParamSidebar } from "@/components/lab/sidebar";
@@ -44,11 +44,48 @@ import {
 
 const TOTAL_TABS = 14;
 
+const VALID_TABS = [
+  "overview",
+  "phase",
+  "micro",
+  "micro3d",
+  "scheil",
+  "mech",
+  "ht",
+  "field",
+  "opt",
+  "radar",
+  "compare",
+  "sens",
+  "fail",
+  "report",
+];
+
+/** Deep-linkable active tab: ?tab=micro3d opens the 3D Grains module directly. */
+function initialTab(): string {
+  if (typeof window === "undefined") return "overview";
+  const t = new URLSearchParams(window.location.search).get("tab");
+  return t && VALID_TABS.includes(t) ? t : "overview";
+}
+
 export default function Home() {
   const [mobileSidebar, setMobileSidebar] = useState(false);
   const [activeTab, setActiveTab] = useState("overview");
   const { dict: t } = useLang();
   useUrlSync();
+
+  // deep-link: apply ?tab= once mounted (avoids SSR/client hydration mismatch)
+  useEffect(() => {
+    setActiveTab(initialTab());
+  }, []);
+  // keep the ?tab= param in sync (replaceState — no history spam)
+  useEffect(() => {
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.set("tab", activeTab);
+      window.history.replaceState(null, "", url.toString());
+    } catch { /* noop */ }
+  }, [activeTab]);
 
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">

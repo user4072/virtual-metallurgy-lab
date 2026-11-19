@@ -22,6 +22,7 @@ export interface LabState {
   temperatureC: number; // service / inspection temperature
   heatTreatmentC: number; // ageing / solutionising temperature
   coolingRateKs: number; // K/s
+  holdingTimeHours: number; // annealing hold time (hr) — phase-field module
   magnification: number; // SEM magnification x
 
   // --- Surrogate model selection ------------------------------------------
@@ -52,6 +53,7 @@ export interface LabState {
   setTemperatureC: (v: number) => void;
   setHeatTreatmentC: (v: number) => void;
   setCoolingRateKs: (v: number) => void;
+  setHoldingTimeHours: (v: number) => void;
   setMagnification: (v: number) => void;
   setSurrogateModel: (m: LabState["surrogateModel"]) => void;
   setDiffusionSteps: (v: number) => void;
@@ -92,6 +94,7 @@ export const useLabStore = create<LabState>((set) => ({
   temperatureC: 25,
   heatTreatmentC: 190,
   coolingRateKs: 8,
+  holdingTimeHours: 2,
   magnification: 2500,
   surrogateModel: "graph-gnn",
   diffusionSteps: 50,
@@ -112,6 +115,7 @@ export const useLabStore = create<LabState>((set) => ({
   setTemperatureC: (v) => set({ temperatureC: v }),
   setHeatTreatmentC: (v) => set({ heatTreatmentC: v }),
   setCoolingRateKs: (v) => set({ coolingRateKs: v }),
+  setHoldingTimeHours: (v) => set({ holdingTimeHours: v }),
   setMagnification: (v) => set({ magnification: v }),
   setSurrogateModel: (m) => set({ surrogateModel: m }),
   setDiffusionSteps: (v) => set({ diffusionSteps: v }),
