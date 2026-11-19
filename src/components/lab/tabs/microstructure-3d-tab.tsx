@@ -31,6 +31,7 @@ import { Box, Pause, Play, RotateCcw, ZoomIn, ZoomOut } from "lucide-react";
 import { useLabStore } from "@/store/lab-store";
 import { ALLOY_SYSTEMS, R_GAS } from "@/lib/metallurgy";
 import { usePredictPhase } from "@/components/lab/use-lab-data";
+import { depositionPlan, type DepositionPlan } from "@/lib/ca-physics";
 import { Skeleton } from "@/components/ui/skeleton";
 
 function mulberry32(seed: number) {
@@ -88,9 +89,10 @@ function drawFaceTexture(
     faceId: number;
     size: number;
     palette: MetalPalette;
+    plan: DepositionPlan | null;
   },
 ) {
-  const { cellsAcross, precipCount, seed, faceId, size, palette } = opts;
+  const { cellsAcross, precipCount, seed, faceId, size, palette, plan } = opts;
   const ctx = canvas.getContext("2d");
   if (!ctx) return;
   const rng = mulberry32(seed * 7919 + faceId * 104729);
@@ -181,6 +183,7 @@ function makeFaceTexture(opts: {
   seed: number;
   faceId: number;
   palette: MetalPalette;
+  plan: DepositionPlan | null;
 }): THREE.CanvasTexture {
   const size = 768;
   const canvas = document.createElement("canvas");
@@ -281,6 +284,21 @@ export function Microstructure3dTab({ active }: { active: boolean }) {
     const faces = [0, 1, 2, 3, 4, 5];
     const textures: THREE.CanvasTexture[] = [];
     const materials: THREE.MeshStandardMaterial[] = [];
+    const plan = depositionPlan(
+      s.alloySystem,
+      {
+        C: s.soluteFraction * 100,
+        Mn: s.compExtra["Mn"] ?? 0.75,
+        Si: s.compExtra["Si"] ?? 0.25,
+        Cr: s.compExtra["Cr"] ?? 0,
+        Ni: s.compExtra["Ni"] ?? 0,
+        Mo: s.compExtra["Mo"] ?? 0,
+      },
+      s.coolingRateKs,
+      s.holdingTimeHours,
+      s.heatTreatmentC,
+      sys.tEutecticC,
+    );
     const buildTextures = () => {
       textures.forEach((t) => t.dispose());
       materials.forEach((m) => m.dispose());
@@ -293,6 +311,7 @@ export function Microstructure3dTab({ active }: { active: boolean }) {
           seed: Math.round(grainUm * 100) + precipCount,
           faceId,
           palette,
+          plan,
         });
         textures.push(tex);
         materials.push(

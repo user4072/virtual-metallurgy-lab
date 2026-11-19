@@ -9,7 +9,7 @@
  */
 
 import { create } from "zustand";
-import type { AlloySystemId } from "@/lib/metallurgy";
+import { ALLOY_SYSTEMS, type AlloySystemId } from "@/lib/metallurgy";
 import { DEFAULT_HT_WORKFLOW, type HTOptimizationResult, type HTResults, type HTStep } from "@/lib/heat-treatment-types";
 
 export interface LabState {
@@ -113,7 +113,13 @@ export const useLabStore = create<LabState>((set) => ({
   htResults: null,
   htSelectedStepId: null,
 
-  setAlloySystem: (s) => set({ alloySystem: s, compExtra: {} }),
+  setAlloySystem: (id) => {
+    const sys = ALLOY_SYSTEMS[id];
+    const cur = useLabStore.getState();
+    const x = Math.min(cur.soluteFraction, sys.xMax); // clamp on system switch
+    const x2 = Math.min(cur.soluteFraction2, sys.xMax2 ?? 1);
+    set({ alloySystem: id, soluteFraction: x, soluteFraction2: x2, compExtra: {} });
+  },
   setSoluteFraction: (v) => set({ soluteFraction: v }),
   setSoluteFraction2: (v) => set({ soluteFraction2: v }),
   setTemperatureC: (v) => set({ temperatureC: v }),
