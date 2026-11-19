@@ -23,6 +23,8 @@ export interface LabState {
   heatTreatmentC: number; // ageing / solutionising temperature
   coolingRateKs: number; // K/s
   holdingTimeHours: number; // annealing hold time (hr) — phase-field module
+  /** Extra alloying elements (wt%) for the current system, e.g. {Mg: 0.4, Si: 0.2}. */
+  compExtra: Record<string, number>;
   magnification: number; // SEM magnification x
 
   // --- Surrogate model selection ------------------------------------------
@@ -54,6 +56,7 @@ export interface LabState {
   setHeatTreatmentC: (v: number) => void;
   setCoolingRateKs: (v: number) => void;
   setHoldingTimeHours: (v: number) => void;
+  setCompExtra: (el: string, v: number) => void;
   setMagnification: (v: number) => void;
   setSurrogateModel: (m: LabState["surrogateModel"]) => void;
   setDiffusionSteps: (v: number) => void;
@@ -95,6 +98,7 @@ export const useLabStore = create<LabState>((set) => ({
   heatTreatmentC: 190,
   coolingRateKs: 8,
   holdingTimeHours: 2,
+  compExtra: {},
   magnification: 2500,
   surrogateModel: "graph-gnn",
   diffusionSteps: 50,
@@ -109,13 +113,14 @@ export const useLabStore = create<LabState>((set) => ({
   htResults: null,
   htSelectedStepId: null,
 
-  setAlloySystem: (s) => set({ alloySystem: s }),
+  setAlloySystem: (s) => set({ alloySystem: s, compExtra: {} }),
   setSoluteFraction: (v) => set({ soluteFraction: v }),
   setSoluteFraction2: (v) => set({ soluteFraction2: v }),
   setTemperatureC: (v) => set({ temperatureC: v }),
   setHeatTreatmentC: (v) => set({ heatTreatmentC: v }),
   setCoolingRateKs: (v) => set({ coolingRateKs: v }),
   setHoldingTimeHours: (v) => set({ holdingTimeHours: v }),
+  setCompExtra: (el, v) => set((st) => ({ compExtra: { ...st.compExtra, [el]: v } })),
   setMagnification: (v) => set({ magnification: v }),
   setSurrogateModel: (m) => set({ surrogateModel: m }),
   setDiffusionSteps: (v) => set({ diffusionSteps: v }),

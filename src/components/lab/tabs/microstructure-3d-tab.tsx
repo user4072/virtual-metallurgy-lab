@@ -36,6 +36,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
 import { ALLOY_SYSTEMS } from "@/lib/metallurgy";
+import { buildComposition } from "@/lib/composition";
 import { useLabStore } from "@/store/lab-store";
 import { usePredictPhase } from "@/components/lab/use-lab-data";
 
@@ -338,14 +339,38 @@ function CrystalViewport({
     };
 
     const geo = new THREE.SphereGeometry(1.35, 48, 48);
+    // flat typed arrays: three uploads these directly (no per-element .toArray,
+    // which crashed on undefined slots in embedded webviews)
+    const uSeedsFlat = new Float32Array(MAX_SEEDS * 3);
+    const uWeightsFlat = new Float32Array(MAX_SEEDS);
+    const uPrecipsFlat = new Float32Array(MAX_PRECIPS * 4);
+    const syncUniformArrays = () => {
+      const seeds = seedsRef.current;
+      for (let i = 0; i < MAX_SEEDS; i++) {
+        const v = seeds[i];
+        uSeedsFlat[i * 3] = v ? v.x : 999;
+        uSeedsFlat[i * 3 + 1] = v ? v.y : 999;
+        uSeedsFlat[i * 3 + 2] = v ? v.z : 999;
+        uWeightsFlat[i] = weightsRef.current[i] ?? 1e-6;
+      }
+      const precips = precipsRef.current;
+      for (let i = 0; i < MAX_PRECIPS; i++) {
+        const v = precips[i];
+        uPrecipsFlat[i * 4] = v ? v.x : 999;
+        uPrecipsFlat[i * 4 + 1] = v ? v.y : 999;
+        uPrecipsFlat[i * 4 + 2] = v ? v.z : 999;
+        uPrecipsFlat[i * 4 + 3] = v ? v.w : 1e-4;
+      }
+    };
+    syncUniformArrays();
     const material = new THREE.ShaderMaterial({
       vertexShader: VERT,
       fragmentShader: FRAG,
       uniforms: {
-        uSeeds: { value: seedsRef.current },
-        uWeights: { value: weightsRef.current },
+        uSeeds: { value: uSeedsFlat },
+        uWeights: { value: uWeightsFlat },
         uNSeeds: { value: seedsRef.current.length },
-        uPrecips: { value: precipsRef.current },
+        uPrecips: { value: uPrecipsFlat },
         uNPrecips: { value: precipsRef.current.length },
         uTime: { value: 0 },
         uEdgeWidth: { value: 0.045 },
@@ -423,10 +448,10 @@ function CrystalViewport({
       }
       material.uniforms.uTime.value = time;
       // keep uniforms in sync with the latest parameter-driven structure
-      material.uniforms.uSeeds.value = seedsRef.current;
-      material.uniforms.uNSeeds.value = seedsRef.current.length;
-      material.uniforms.uPrecips.value = precipsRef.current;
-      material.uniforms.uNPrecips.value = precipsRef.current.length;
+      if (material.uniforms.uNSeeds.value !== seedsRef.current.length) {
+        material.uniforms.uNSeeds.value = seedsRef.current.length;
+        syncUniformArrays();
+      }
       updateCamera();
       renderer.render(scene, camera);
     };
@@ -478,12 +503,13 @@ export function Microstructure3dTab({ active }: { active: boolean }) {
       temperatureC: s.temperatureC,
       heatTreatmentC: s.heatTreatmentC,
       coolingRateKs: s.coolingRateKs,
+      composition: buildComposition(s.alloySystem, s.soluteFraction, s.soluteFraction2, s.compExtra),
     },
-    [s.alloySystem, s.soluteFraction, s.soluteFraction2, s.temperatureC, s.heatTreatmentC, s.coolingRateKs],
+    [s.alloySystem, s.soluteFraction, s.soluteFraction2, s.temperatureC, s.heatTreatmentC, s.coolingRateKs, JSON.stringify(s.compExtra)],
   );
 
   const [animate, setAnimate] = useState(true);
-  const [zoom, setZoom] = useState(2.6);
+  const [zoom, setZoom] = useState(3.4);
   const viewportRef = useRef<HTMLDivElement>(null);
 
   const grainUm = data?.microstructure?.grainSizeUm ?? 30;
@@ -516,6 +542,13 @@ export function Microstructure3dTab({ active }: { active: boolean }) {
         ),
       );
       weights2.push(0.8 + rng() * 0.45);
+    }
+    // pad to the declared uniform-array length — three uploads every slot and
+    // throws on undefined entries. Dummies sit far outside the box with tiny
+    // weights so they never win the nearest-seed contest.
+    for (let i = seeds2.length; i < MAX_SEEDS; i++) {
+      seeds2.push(new THREE.Vector3(997 + i, 997, 997));
+      weights2.push(1e-6);
     }
     const pptDensity = data?.microstructure?.precipitateDensity ?? 40;
     const nPrecips = Math.max(
@@ -600,7 +633,7 @@ export function Microstructure3dTab({ active }: { active: boolean }) {
                   size="sm"
                   variant="ghost"
                   className="h-7 w-7 p-0 text-white hover:bg-white/10"
-                  onClick={() => { zoomRef.current = Math.max(1.7, zoomRef.current - 0.4); setZoom(zoomRef.current); }}
+                  onClick={() => { zoomRef.current = Math.max(2.0, zoomRef.current - 0.4); setZoom(zoomRef.current); }}
                   title="Zoom in"
                 >
                   <ZoomIn className="h-3.5 w-3.5" />
@@ -609,7 +642,7 @@ export function Microstructure3dTab({ active }: { active: boolean }) {
                   size="sm"
                   variant="ghost"
                   className="h-7 w-7 p-0 text-white hover:bg-white/10"
-                  onClick={() => { zoomRef.current = 2.6; setZoom(2.6); }}
+                  onClick={() => { zoomRef.current = 3.4; setZoom(2.6); }}
                   title="Reset view"
                 >
                   <RotateCcw className="h-3.5 w-3.5" />

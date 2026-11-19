@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { useLabStore } from "@/store/lab-store";
 import { ALLOY_SYSTEMS } from "@/lib/metallurgy";
+import { buildComposition } from "@/lib/composition";
 import { usePredictPhase } from "@/components/lab/use-lab-data";
 import { PhaseDiagramChart } from "@/components/lab/phase-diagram-chart";
 import { GibbsChart } from "@/components/lab/gibbs-chart";
@@ -31,6 +32,7 @@ export function PhaseDiagramTab() {
     temperatureC: s.temperatureC,
     heatTreatmentC: s.heatTreatmentC,
     coolingRateKs: s.coolingRateKs,
+    composition: buildComposition(s.alloySystem, s.soluteFraction, s.soluteFraction2, s.compExtra),
   };
   const { data, loading, error } = usePredictPhase(body, [
     s.alloySystem,
@@ -38,6 +40,7 @@ export function PhaseDiagramTab() {
     s.soluteFraction2,
     s.temperatureC,
     s.heatTreatmentC,
+    JSON.stringify(s.compExtra),
     s.coolingRateKs,
   ]);
 

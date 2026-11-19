@@ -29,6 +29,7 @@ import { predictYieldStrength } from "@/lib/causal";
 export const runtime = "nodejs";
 
 interface PredictBody {
+  composition?: Record<string, number>;
   alloySystem: AlloySystemId;
   soluteFraction: number;
   soluteFraction2?: number;
@@ -61,6 +62,7 @@ export async function POST(req: NextRequest) {
           soluteFraction: x,
           soluteFraction2: x2,
           temperatureC: T,
+          composition: body.composition,
         }),
         signal: AbortSignal.timeout(10000),
       });

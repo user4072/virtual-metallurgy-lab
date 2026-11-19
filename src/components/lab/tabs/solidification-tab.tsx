@@ -7,6 +7,7 @@ import { Slider } from "@/components/ui/slider";
 import { useState } from "react";
 import { useLabStore } from "@/store/lab-store";
 import { ALLOY_SYSTEMS } from "@/lib/metallurgy";
+import { buildComposition } from "@/lib/composition";
 import { useScheil } from "@/components/lab/use-lab-data";
 import { ScheilChart } from "@/components/lab/scheil-chart";
 import { Flame, Snowflake, Sigma, TrendingUp, Droplet, Waves } from "lucide-react";
@@ -15,8 +16,17 @@ export function SolidificationTab() {
   const s = useLabStore();
   const sys = ALLOY_SYSTEMS[s.alloySystem];
   // local carbon slider for the TTT/steel mini-card (only meaningful for Fe-C)
-  const body = { alloySystem: s.alloySystem, soluteFraction: s.soluteFraction };
-  const { data, loading, error } = useScheil(body, [s.alloySystem, s.soluteFraction]);
+  const body = {
+    alloySystem: s.alloySystem,
+    soluteFraction: s.soluteFraction,
+    composition: buildComposition(s.alloySystem, s.soluteFraction, s.soluteFraction2, s.compExtra),
+  };
+  const { data, loading, error } = useScheil(body, [
+    s.alloySystem,
+    s.soluteFraction,
+    JSON.stringify(s.compExtra),
+    s.soluteFraction2,
+  ]);
 
   return (
     <div className="space-y-5">

@@ -21,6 +21,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Separator } from "@/components/ui/separator";
 import { ALLOY_SYSTEMS, type AlloySystemId } from "@/lib/metallurgy";
 import { useLabStore } from "@/store/lab-store";
+import { EXTRA_ELEMENTS, FEC_ELEMENT_TO_WT_FIELD } from "@/lib/composition";
 import { useHistory } from "@/store/history-store";
 import { useLang } from "@/store/lang-store";
 import { ALLOY_PRESETS, PRESET_CATEGORIES, type AlloyPreset } from "@/lib/alloy-presets";
@@ -127,6 +128,37 @@ export function SidebarContent() {
                 <span>{sys.solute}: {fmt(s.soluteFraction * 100, 2)}%</span>
               </div>
             )}
+            {/* Alloying elements — per-system extras (drives real CALPHAD) */}
+            {(EXTRA_ELEMENTS[s.alloySystem] ?? []).length > 0 && (
+              <div className="mt-3 border-t border-border/40 pt-2">
+                <div className="mb-1.5 text-[9px] uppercase tracking-wider text-muted-foreground">
+                  Alloying elements (wt%) — sent to pycalphad
+                </div>
+                <div className="space-y-2">
+                  {(EXTRA_ELEMENTS[s.alloySystem] ?? []).map((d) => (
+                    <SliderRow
+                      key={d.el}
+                      value={s.compExtra[d.el] ?? 0}
+                      min={0}
+                      max={d.maxWt}
+                      step={0.05}
+                      unit="wt%"
+                      display={`${fmt(s.compExtra[d.el] ?? 0, 2)} wt% ${d.label}`}
+                      onValue={(v) => {
+                        s.setCompExtra(d.el, v);
+                        const wtField = FEC_ELEMENT_TO_WT_FIELD[d.el];
+                        if (wtField) {
+                          const setter = (s as unknown as Record<string, (v: number) => void>)[
+                            "set" + wtField.charAt(0).toUpperCase() + wtField.slice(1)
+                          ];
+                          setter?.(v);
+                        }
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
           </Section>
 
           {/* ===== GROUP: Thermal Processing ===== */}
@@ -136,8 +168,8 @@ export function SidebarContent() {
             <SliderRow
               value={s.temperatureC}
               min={-50}
-              max={800}
-              step={5}
+              max={2000}
+              step={10}
               unit="°C"
               display={`${fmt(s.temperatureC, 0)} °C`}
               onValue={(v) => s.setTemperatureC(v)}
@@ -191,68 +223,6 @@ export function SidebarContent() {
             </Select>
           </Section>
 
-          <Separator className="bg-border/50" />
-
-          {/* ===== GROUP: AI Models ===== */}
-          <GroupLabel label={t.sidebar.groupModels} />
-          {/* Surrogate model */}
-          <Section icon={<Network className="h-3.5 w-3.5" />} title={t.sidebar.surrogateModel}>
-            <ToggleGroup
-              type="single"
-              value={s.surrogateModel}
-              onValueChange={(v) => v && s.setSurrogateModel(v as never)}
-              className="grid w-full grid-cols-1 gap-1.5"
-              variant="outline"
-              size="sm"
-            >
-              <ToggleGroupItem
-                value="graph-gnn"
-                className="justify-start gap-2 data-[state=on]:border-primary/50 data-[state=on]:bg-primary/10"
-              >
-                <Network className="h-3.5 w-3.5" /> {t.sidebar.graphGnn}
-              </ToggleGroupItem>
-              <ToggleGroupItem
-                value="tabular-mlp"
-                className="justify-start gap-2 data-[state=on]:border-primary/50 data-[state=on]:bg-primary/10"
-              >
-                <Layers className="h-3.5 w-3.5" /> {t.sidebar.tabularMlp}
-              </ToggleGroupItem>
-              <ToggleGroupItem
-                value="ensemble"
-                className="justify-start gap-2 data-[state=on]:border-primary/50 data-[state=on]:bg-primary/10"
-              >
-                <Sparkles className="h-3.5 w-3.5" /> {t.sidebar.ensemble}
-              </ToggleGroupItem>
-            </ToggleGroup>
-          </Section>
-
-          {/* Diffusion sampler */}
-          <Section icon={<Sparkles className="h-3.5 w-3.5" />} title={t.sidebar.diffusionSampler}>
-            <Label className="mb-1.5 block text-[10px] uppercase tracking-wider text-muted-foreground">
-              {t.sidebar.inferenceSteps}
-            </Label>
-            <SliderRow
-              value={s.diffusionSteps}
-              min={10}
-              max={100}
-              step={5}
-              unit=""
-              display={`${s.diffusionSteps} steps`}
-              onValue={(v) => s.setDiffusionSteps(v)}
-            />
-            <Label className="mb-1.5 mt-3 block text-[10px] uppercase tracking-wider text-muted-foreground">
-              {t.sidebar.guidanceScale}
-            </Label>
-            <SliderRow
-              value={s.guidanceScale}
-              min={1}
-              max={15}
-              step={0.5}
-              unit=""
-              display={fmt(s.guidanceScale, 1)}
-              onValue={(v) => s.setGuidanceScale(v)}
-            />
-          </Section>
         </div>
 
         {/* History panel inside the scroll area so nothing gets clipped */}
