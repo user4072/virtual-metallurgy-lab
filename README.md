@@ -27,11 +27,11 @@ more than it is.
 | **Overview** | Live engineering dashboard for the current alloy recipe | unified TS surrogate |
 | **Phase** | T–x phase diagram, Gibbs curves, phase fractions | **pycalphad** (surrogate fallback) |
 | **Microstructure** | SEM-style micrograph generation + micrograph database | hybrid: procedural physics / optional diffusion |
-| **3D Grains** | Raymarched 3D Voronoi polycrystal with animated grain growth | GPU (three.js) |
+| **3D Grains** | Voronoi RVE cube with per-face grain maps, phase deposition (ferrite bands, cementite network, pearlite, martensite needles) | three.js + shared CA physics |
 | **Solidification** | Scheil-Gulliver paths, microsegregation, eutectic fraction | **pycalphad Scheil** (surrogate fallback) |
 | **Mechanical** | Ludwik-Hollomon flow curves, Basquin/Manson-Coffin fatigue, TTT/CCT | TS physics |
 | **Heat Treatment** | Multi-step process pipelines, workflows, optimization | Python HT service |
-| **Phase-Field** | 128² Potts grain growth + precipitate nucleation, SEM-style rendering | in-browser |
+| **Phase-Field** | 128² CA with a real cooling path: boundary ferrite/cementite deposition, pearlite colonies, martensite needles, precipitate ageing | in-browser |
 | **Optimization** | Bayesian (GP + EI), GA, NSGA-II multi-objective Pareto | Python HT service |
 | **Property Radar / Compare / Sensitivity / Failure** | Property cross-plots, grading, design-space maps, Paris-law fatigue life | TS physics |
 | **Report** | Full JSON/markdown engineering report for the session | all of the above |
@@ -39,6 +39,7 @@ more than it is.
 <p align="center">
   <img src="docs/screenshots/phase.png" alt="Phase module" width="49%">
   <img src="docs/screenshots/phase-field.png" alt="Phase-field module" width="49%">
+  <img src="docs/screenshots/micro3d.png" alt="3D Grains module" width="49%">
 </p>
 <p align="center">
   <img src="docs/screenshots/heat-treatment.png" alt="Heat-treatment module" width="49%">
