@@ -106,6 +106,45 @@
       "license": "See COST 507 usage conditions (permitted for research/teaching with citation)",
       "citation": "COST 507: Thermochemical database for light metal alloys, I. Ansara, A.T. Dinsdale, M.H. Rand (eds.), EUR 18170 EN (1998). Distributed with pycalphad.",
       "used_for": "Al-Cu and Al-Si phase diagrams, Scheil solidification"
+    },
+    {
+      "file": "fecrc_ternary.tdb",
+      "sha256": "8772c52152a0c7e64df661b41d9f9573120123032696f8cac0968a318a7a36f6",
+      "bytes": 334556,
+      "title": "Fe-Cr-C extract of MatCalc mc_fe v2.062",
+      "system": "Fe Cr C (+VA) ternary",
+      "elements": "Fe Cr C (+VA)",
+      "phases": "FCC_A1, BCC_A2, SIGMA, liquid + carbides",
+      "source": "Clean extract of MatCalc mc_fe v2.062 (ODbL attributed)",
+      "license": "ODbL 1.0 (derived)",
+      "citation": "Derived from MatCalc mc_fe v2.062 (TU Wien, ODbL 1.0).",
+      "used_for": "Tool/heat-resisting steels equilibrium"
+    },
+    {
+      "file": "fecrmn_ternary.tdb",
+      "sha256": "c2ef6c32644a33fba7ad38ac7f2649732830d1ed21dee6312830d25b0d583601",
+      "bytes": 265960,
+      "title": "Fe-Cr-Mn extract of MatCalc mc_fe v2.062",
+      "system": "Fe Cr Mn (+VA) ternary",
+      "elements": "Fe Cr Mn (+VA)",
+      "phases": "FCC_A1, BCC_A2, SIGMA, liquid + carbides",
+      "source": "Clean extract of MatCalc mc_fe v2.062 (ODbL attributed)",
+      "license": "ODbL 1.0 (derived)",
+      "citation": "Derived from MatCalc mc_fe v2.062 (TU Wien, ODbL 1.0).",
+      "used_for": "Hadfield/HA steels equilibrium"
+    },
+    {
+      "file": "fecrmo_ternary.tdb",
+      "sha256": "4dd0f6c10ab2058f86f1187c8c784d3ef805f30a1f0ba7ed3ee932afd789fe5b",
+      "bytes": 269590,
+      "title": "Fe-Cr-Mo extract of MatCalc mc_fe v2.062",
+      "system": "Fe Cr Mo (+VA) ternary",
+      "elements": "Fe Cr Mo (+VA)",
+      "phases": "FCC_A1, BCC_A2, SIGMA, liquid + carbides",
+      "source": "Clean extract of MatCalc mc_fe v2.062 (ODbL attributed)",
+      "license": "ODbL 1.0 (derived)",
+      "citation": "Derived from MatCalc mc_fe v2.062 (TU Wien, ODbL 1.0).",
+      "used_for": "Ferritic/Mo steels equilibrium"
     }
   ]
 }

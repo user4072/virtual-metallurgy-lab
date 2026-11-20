@@ -18,7 +18,7 @@
  * -----------------------------------------------------------------------------
  */
 
-export type AlloySystemId = "Al-Cu" | "Al-Si" | "Fe-C" | "Ni-Cr-Co";
+export type AlloySystemId = "Al-Cu" | "Al-Si" | "Fe-C" | "Ni-Cr-Co" | "Fe-Cr-C" | "Fe-Cr-Mn" | "Fe-Cr-Mo";
 
 export interface AlloySystemDef {
   id: AlloySystemId;
@@ -117,6 +117,62 @@ export const ALLOY_SYSTEMS: Record<AlloySystemId, AlloySystemDef> = {
     omegaS: -78000,
     accent: "#b45309",
   },
+  // ---- Fe-Cr-X ternaries (steel extracts, real CALPHAD via MatCalc) ----
+  "Fe-Cr-C": {
+    id: "Fe-Cr-C",
+    label: "Iron–Chromium–Carbon",
+    solvent: "Fe",
+    solute: "Cr",
+    xMax: 0.30,
+    xEutectic: 0.12,
+    tEutecticC: 740,
+    xMaxSolid: 0.022,
+    tMeltSolventC: 1500,
+    tMeltSecondC: 1450,
+    primaryPhase: "γ-Fe (Austenite)",
+    secondPhase: "Fe₃C",
+    liquidPhase: "Liquid",
+    omegaL: -62000,
+    omegaS: -78000,
+    accent: "#dc2626",
+  },
+  "Fe-Cr-Mn": {
+    id: "Fe-Cr-Mn",
+    label: "Iron–Chromium–Manganese",
+    solvent: "Fe",
+    solute: "Cr",
+    xMax: 0.30,
+    xEutectic: 0.12,
+    tEutecticC: 730,
+    xMaxSolid: 0.025,
+    tMeltSolventC: 1500,
+    tMeltSecondC: 1244,
+    primaryPhase: "γ-Fe (Austenite)",
+    secondPhase: "σ-Phase",
+    liquidPhase: "Liquid",
+    omegaL: -50000,
+    omegaS: -60000,
+    accent: "#7c3aed",
+  },
+  "Fe-Cr-Mo": {
+    id: "Fe-Cr-Mo",
+    label: "Iron–Chromium–Molybdenum",
+    solvent: "Fe",
+    solute: "Cr",
+    xMax: 0.30,
+    xEutectic: 0.12,
+    tEutecticC: 735,
+    xMaxSolid: 0.024,
+    tMeltSolventC: 1500,
+    tMeltSecondC: 1450,
+    primaryPhase: "γ-Fe (Austenite)",
+    secondPhase: "σ-Phase",
+    liquidPhase: "Liquid",
+    omegaL: -45000,
+    omegaS: -55000,
+    accent: "#2563eb",
+  },
+   // anchor
   // ---- Ni-Cr-Co ternary (superalloy base) ----
   // Real CALPHAD data from:
   //   - Gu & Du, "Thermodynamic assessment of the Ni–Co–Cr system" (J Alloys Compd)

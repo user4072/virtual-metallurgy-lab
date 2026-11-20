@@ -155,6 +155,27 @@ export function PhaseFieldTab() {
         cells[y * N + x] = { grainId: bi, phase: 0, ori: grains[bi].ori, lamella: 0 };
       }
     }
+    // curvature smoothing: 2 rounds of 3×3 majority vote on grainId — turns
+    // the straight Voronoi polygon edges into curved, organic boundaries
+    for (let pass = 0; pass < 2; pass++) {
+      const src = cells.map((c) => c.grainId);
+      for (let y = 0; y < N; y++) {
+        for (let x = 0; x < N; x++) {
+          const i = y * N + x;
+          const counts = new Map<number, number>();
+          for (let dy = -1; dy <= 1; dy++) {
+            for (let dx = -1; dx <= 1; dx++) {
+              const n = src[((y + dy + N) % N) * N + ((x + dx + N) % N)];
+              counts.set(n, (counts.get(n) ?? 0) + 1);
+            }
+          }
+          let bestId = src[i];
+          let bestC = -1;
+          for (const [id, c2] of counts) if (c2 > bestC) { bestC = c2; bestId = id; }
+          if (bestId !== src[i] && bestC >= 5) cells[i].grainId = bestId;
+        }
+      }
+    }
     field2D.current = cells;
     simTime.current = 0;
     tempNow.current = Math.max(s.heatTreatmentC, plan.A3 + 40);
@@ -191,6 +212,7 @@ export function PhaseFieldTab() {
     if (e.length === 0) return;
     const r = e.map((c) => ({ ...c }));
     const rng = rngRef.current;
+    const stripePeriod = Math.max(2, Math.min(6, Math.round(7 - Math.log10(Math.max(s.coolingRateKs, 1)) * 2)));
     const plan: DepositionPlan = depositionPlan(
       s.alloySystem,
       comp,
@@ -268,7 +290,7 @@ export function PhaseFieldTab() {
         if (pearliteNb > 0) {
           if (rng() < pGrow) {
             r[i].phase = 2;
-            r[i].lamella = (x + y) % 4 < 2 ? 1 : 0;
+            r[i].lamella = (x + y) % stripePeriod < stripePeriod / 2 ? 1 : 0;
           }
           continue;
         }
@@ -343,6 +365,27 @@ export function PhaseFieldTab() {
       }
     }
 
+    // curvature smoothing pass: rounds the migrating boundaries (no straight lines)
+    {
+      const src = r.map((c) => c.grainId);
+      for (let y = 0; y < N; y++) {
+        for (let x = 0; x < N; x++) {
+          const i = y * N + x;
+          if (r[i].phase !== 0) continue;
+          const counts = new Map<number, number>();
+          for (let dy = -1; dy <= 1; dy++) {
+            for (let dx = -1; dx <= 1; dx++) {
+              const n = src[((y + dy + N) % N) * N + ((x + dx + N) % N)];
+              counts.set(n, (counts.get(n) ?? 0) + 1);
+            }
+          }
+          let bestId = src[i];
+          let bestC = -1;
+          for (const [id, c2] of counts) if (c2 > bestC) { bestC = c2; bestId = id; }
+          if (bestId !== src[i] && bestC >= 6) r[i].grainId = bestId;
+        }
+      }
+    }
     field2D.current = r;
     const ids = new Set<number>();
     let pf = 0;

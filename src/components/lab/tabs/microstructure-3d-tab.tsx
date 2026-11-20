@@ -80,6 +80,26 @@ const DEFAULT_PALETTE: MetalPalette = {
  * jittered-grid Voronoi (uniform cells), per-grain metal tint with subtle
  * lightness variation, dark boundary grooves, system-colored precipitates.
  */
+// cheap smooth value-noise (bilinear over a hashed grid) — gives Voronoi
+// boundaries a natural curved wobble instead of straight polygon edges
+function vnoise(x: number, y: number, s: number): number {
+  const xi = Math.floor(x);
+  const yi = Math.floor(y);
+  const fx = x - xi;
+  const fy = y - yi;
+  const h = (a: number, b: number) => {
+    const n = Math.sin(a * 127.1 + b * 311.7 + s * 74.7) * 43758.5453;
+    return n - Math.floor(n);
+  };
+  const a = h(xi, yi);
+  const b = h(xi + 1, yi);
+  const c = h(xi, yi + 1);
+  const d = h(xi + 1, yi + 1);
+  const ux = fx * fx * (3 - 2 * fx);
+  const uy = fy * fy * (3 - 2 * fy);
+  return a * (1 - ux) * (1 - uy) + b * ux * (1 - uy) + c * (1 - ux) * uy + d * ux * uy;
+}
+
 function drawFaceTexture(
   canvas: HTMLCanvasElement,
   opts: {
@@ -90,15 +110,31 @@ function drawFaceTexture(
     size: number;
     palette: MetalPalette;
     plan: DepositionPlan | null;
+    phaseFracs?: { name: string; fraction: number; color: string }[];
   },
 ) {
-  const { cellsAcross, precipCount, seed, faceId, size, palette, plan } = opts;
+  const { cellsAcross, precipCount, seed, faceId, size, palette, plan, phaseFracs } = opts;
   const ctx = canvas.getContext("2d");
   if (!ctx) return;
   const rng = mulberry32(seed * 7919 + faceId * 104729);
 
   // jittered-grid Voronoi seeds → uniform polygonal cells across the face
-  const seeds: { x: number; y: number; light: number }[] = [];
+  const seeds: { x: number; y: number; light: number; phaseIdx: number }[] = [];
+  // CALPHAD-weighted phase assignment per grain (from data.phaseFractions):
+  // dominant solid phase = metal matrix, minor phases = darker second-phase
+  // grains, liquid (if any) = dark pools
+  const phases = phaseFracs ?? [];
+  const solidPhases = phases.filter((p) => !/liquid/i.test(p.name) && p.fraction > 0.005);
+  const total = solidPhases.reduce((a, b) => a + b.fraction, 0) || 1;
+  const pickPhase = () => {
+    const roll = rng() * total;
+    let acc = 0;
+    for (const p of solidPhases) {
+      acc += p.fraction;
+      if (roll <= acc) return solidPhases.indexOf(p);
+    }
+    return 0;
+  };
   const side = Math.max(2, cellsAcross);
   for (let gy = 0; gy < side; gy++) {
     for (let gx = 0; gx < side; gx++) {
@@ -106,6 +142,7 @@ function drawFaceTexture(
         x: (gx + 0.5) / side + (rng() - 0.5) * 0.8 / side,
         y: (gy + 0.5) / side + (rng() - 0.5) * 0.8 / side,
         light: 0.78 + rng() * 0.44, // per-grain etch response
+        phaseIdx: pickPhase(),
       });
     }
   }
@@ -113,6 +150,9 @@ function drawFaceTexture(
   const img = ctx.createImageData(size, size);
   const idMap = new Int32Array(size * size);
   const [br, bg, bb] = palette.base;
+  // minor CALPHAD phases etch slightly darker/cooler than the matrix
+  const minorShade = (phaseIdx: number) =>
+    solidPhases.length > 1 ? (phaseIdx === 0 ? 1.04 : 0.82) : 1.04;
   for (let y = 0; y < size; y++) {
     for (let x = 0; x < size; x++) {
       let best = Infinity;
@@ -120,14 +160,17 @@ function drawFaceTexture(
       for (let i = 0; i < seeds.length; i++) {
         const dx = x / size - seeds[i].x;
         const dy = y / size - seeds[i].y;
-        const d = dx * dx + dy * dy;
+        // organic wobble: smooth value-noise perturbs each seed's distance so
+        // boundaries curve naturally instead of running as straight lines
+        const w = 1 + 0.55 * (vnoise((x + i * 57) * 0.045, (y + i * 91) * 0.045, seed + i) - 0.5);
+        const d = (dx * dx + dy * dy) * w;
         if (d < best) {
           best = d;
           bi = i;
         }
       }
       idMap[y * size + x] = bi;
-      const L = seeds[bi].light;
+      const L = seeds[bi].light * minorShade(seeds[bi].phaseIdx);
       const o = (y * size + x) * 4;
       img.data[o] = Math.min(255, br * L);
       img.data[o + 1] = Math.min(255, bg * L);
@@ -184,6 +227,7 @@ function makeFaceTexture(opts: {
   faceId: number;
   palette: MetalPalette;
   plan: DepositionPlan | null;
+  phaseFracs?: { name: string; fraction: number; color: string }[];
 }): THREE.CanvasTexture {
   const size = 768;
   const canvas = document.createElement("canvas");
@@ -312,6 +356,7 @@ export function Microstructure3dTab({ active }: { active: boolean }) {
           faceId,
           palette,
           plan,
+          phaseFracs: data?.phaseFractions?.phases,
         });
         textures.push(tex);
         materials.push(
